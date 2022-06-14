@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XP6KRXPftjZujCS48bAQGWfzCt7wCGQ79gbGOB9JWProLzLaETSypGfUHCAlUixlOanhvTX7ceD5tQ2M5Hfg6g==",
+  "dgSpecHash": "423TvBD0ZKKVwxvtanIfxLrgzRLR55fJwxw/UMJfyBzRfQ88znD0dhJf8S+m9Kc4TLNPcp2ioFejyiMbjxrLww==",
   "success": true,
-  "projectFilePath": "/Users/ryantobin/Coding Projects/BugTracker/BugTracker/BugTracker.csproj",
+  "projectFilePath": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/BugTracker.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

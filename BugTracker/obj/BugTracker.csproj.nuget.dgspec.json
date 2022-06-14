@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ryantobin/Coding Projects/BugTracker/BugTracker/BugTracker.csproj": {}
+    "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/BugTracker.csproj": {}
   },
   "projects": {
-    "/Users/ryantobin/Coding Projects/BugTracker/BugTracker/BugTracker.csproj": {
+    "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/BugTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ryantobin/Coding Projects/BugTracker/BugTracker/BugTracker.csproj",
+        "projectUniqueName": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/BugTracker.csproj",
         "projectName": "BugTracker",
-        "projectPath": "/Users/ryantobin/Coding Projects/BugTracker/BugTracker/BugTracker.csproj",
+        "projectPath": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/BugTracker.csproj",
         "packagesPath": "/Users/ryantobin/.nuget/packages/",
-        "outputPath": "/Users/ryantobin/Coding Projects/BugTracker/BugTracker/obj/",
+        "outputPath": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ryantobin/.nuget/NuGet/NuGet.Config"
