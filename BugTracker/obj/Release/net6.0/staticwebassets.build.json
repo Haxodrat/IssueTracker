@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BhoIGNXqdn0e27wlMYCBuHE0/T32onUutqEZ0fE66Ls=",
+  "Hash": "7yWsQ6UZcKR0CGS4JSkRm6ILJdrz6FIlO+hcbxdYuaQ=",
   "Source": "BugTracker",
   "BasePath": "_content/BugTracker",
   "Mode": "Default",
@@ -850,6 +850,23 @@
       "OriginalItemSpec": "wwwroot/dist/.DS_Store"
     },
     {
+      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/css/.DS_Store",
+      "SourceId": "BugTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/",
+      "BasePath": "_content/BugTracker",
+      "RelativePath": "dist/css/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/dist/css/.DS_Store"
+    },
+    {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/css/adminlte.css",
       "SourceId": "BugTracker",
       "SourceType": "Discovered",
@@ -1326,12 +1343,12 @@
       "OriginalItemSpec": "wwwroot/dist/css/alt/adminlte.plugins.min.css.map"
     },
     {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/img/AdminLTELogo.png",
+      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/img/.DS_Store",
       "SourceId": "BugTracker",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/",
       "BasePath": "_content/BugTracker",
-      "RelativePath": "dist/img/AdminLTELogo.png",
+      "RelativePath": "dist/img/.DS_Store",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1340,7 +1357,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/dist/img/AdminLTELogo.png"
+      "OriginalItemSpec": "wwwroot/dist/img/.DS_Store"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/img/avatar.png",
@@ -1562,6 +1579,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/dist/img/icons.png"
+    },
+    {
+      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/img/IssueTrackerLogo.png",
+      "SourceId": "BugTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/",
+      "BasePath": "_content/BugTracker",
+      "RelativePath": "dist/img/IssueTrackerLogo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/dist/img/IssueTrackerLogo.png"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/img/photo1.png",
@@ -1853,6 +1887,23 @@
       "OriginalItemSpec": "wwwroot/dist/img/user8-128x128.jpg"
     },
     {
+      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/js/.DS_Store",
+      "SourceId": "BugTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/",
+      "BasePath": "_content/BugTracker",
+      "RelativePath": "dist/js/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/dist/js/.DS_Store"
+    },
+    {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/js/.eslintrc.json",
       "SourceId": "BugTracker",
       "SourceType": "Discovered",
@@ -1936,23 +1987,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/dist/js/adminlte.min.js.map"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/js/demo.js",
-      "SourceId": "BugTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/",
-      "BasePath": "_content/BugTracker",
-      "RelativePath": "dist/js/demo.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/dist/js/demo.js"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/wwwroot/dist/js/pages/dashboard.js",
