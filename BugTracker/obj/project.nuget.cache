@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "423TvBD0ZKKVwxvtanIfxLrgzRLR55fJwxw/UMJfyBzRfQ88znD0dhJf8S+m9Kc4TLNPcp2ioFejyiMbjxrLww==",
+  "dgSpecHash": "MsGWeIie7IawJjUH9MYNPuwOWpO4RqornegwzHd8jJ/u4zFNieq/GSjmyukeXL9v4dSaduXjcu2gJlSrcE9Fsw==",
   "success": true,
   "projectFilePath": "/Users/ryantobin/Documents/GitHub/IssueTracker/BugTracker/BugTracker.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/ryantobin/.nuget/packages/bootstrap/5.1.3/bootstrap.5.1.3.nupkg.sha512"
+  ],
   "logs": []
 }
