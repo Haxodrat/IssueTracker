@@ -1,28 +1,27 @@
 ﻿<Properties StartupConfiguration="{07813C74-326D-4372-802A-B27FCACC3430}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="BugTracker/Views/Shared/_Layout.cshtml">
     <Files>
       <File FileName="BugTracker/Views/Home/Contact.cshtml" Line="1" Column="1" />
       <File FileName="BugTracker/Views/Home/Index.cshtml" Line="1" Column="1" />
-      <File FileName="BugTracker/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
-      <File FileName="BugTracker/Properties/launchSettings.json" Line="15" Column="46" />
+      <File FileName="BugTracker/Views/Shared/_Layout.cshtml" Line="12" Column="61" />
+      <File FileName="BugTracker/wwwroot/dist/css/adminlte.css" Line="33171" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BugTracker" expanded="True">
             <Node name="BugTracker" expanded="True">
+              <Node name="Dependencies" selected="True" />
               <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="dist" expanded="True">
+                  <Node name="css" expanded="True" />
                 </Node>
               </Node>
-              <Node name="wwwroot" expanded="True" />
               <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
@@ -33,7 +32,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.BugTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
