@@ -1,21 +1,41 @@
 ﻿<Properties StartupConfiguration="{CC8B3C20-32E9-4344-9A9D-3E7ED620D251}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Views/Shared/_Layout.cshtml">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Program.cs">
     <Files>
-      <File FileName="IssueTracker/Views/Shared/_Layout.cshtml" Line="62" Column="22" />
+      <File FileName="IssueTracker/Views/Shared/_Layout.cshtml" Line="219" Column="18" />
+      <File FileName="IssueTracker/Views/Home/Index.cshtml" Line="13" Column="1" />
+      <File FileName="IssueTracker/Controllers/HomeController.cs" Line="46" Column="37" />
+      <File FileName="IssueTracker/Views/Shared/_AuthorizeLayout.cshtml" Line="51" Column="40" />
+      <File FileName="IssueTracker/Views/Shared/_LoginPartial.cshtml" Line="132" Column="55" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml" Line="13" Column="30" />
+      <File FileName="IssueTracker/Program.cs" Line="4" Column="1" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/LoginWith2fa.cshtml.cs" Line="12" Column="37" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Logout.cshtml" Line="22" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="IssueTracker" expanded="True">
             <Node name="IssueTracker" expanded="True">
-              <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Identity" expanded="True">
+                  <Node name="Pages" expanded="True">
+                    <Node name="Account" expanded="True">
+                      <Node name="Manage" expanded="True" />
+                      <Node name="LoginWith2fa.cshtml" expanded="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -26,8 +46,4 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

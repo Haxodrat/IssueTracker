@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "z1pHwO0GXR2JpNcHC8gGo0z/tLnxPz0hAvKWFUwTVuY=",
+  "Hash": "KPH7BR7SMT/uRBO3g9ZT/XYBTRTh7Yex5GaFxIlcEQM=",
   "Source": "IssueTracker",
   "BasePath": "_content/IssueTracker",
   "Mode": "Default",
@@ -1103,23 +1103,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/dist/.DS_Store",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "dist/.DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/dist/.DS_Store"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/dist/css/adminlte.css",
@@ -2259,23 +2242,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/dist/js/pages/dashboard3.js"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/dist/plugins/.DS_Store",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "dist/plugins/.DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/dist/plugins/.DS_Store"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/dist/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css",
@@ -19038,23 +19004,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/dist/plugins/flot/plugins/jquery.flot.uiConstants.js"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/dist/plugins/fontawesome-free/.DS_Store",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "dist/plugins/fontawesome-free/.DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/dist/plugins/fontawesome-free/.DS_Store"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/dist/plugins/fontawesome-free/css/all.css",
