@@ -12,21 +12,21 @@
       <File FileName="IssueTracker/Controllers/HomeController.cs" Line="46" Column="37" />
       <File FileName="IssueTracker/Views/Shared/_AuthorizeLayout.cshtml" Line="51" Column="40" />
       <File FileName="IssueTracker/Views/Shared/_LoginPartial.cshtml" Line="132" Column="55" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml" Line="13" Column="30" />
-      <File FileName="IssueTracker/Program.cs" Line="4" Column="1" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/LoginWith2fa.cshtml.cs" Line="12" Column="37" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Logout.cshtml" Line="22" Column="1" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml" Line="70" Column="74" />
+      <File FileName="IssueTracker/Program.cs" Line="13" Column="11" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/LoginWith2fa.cshtml.cs" Line="23" Column="24" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Logout.cshtml" Line="9" Column="7" />
+      <File FileName="IssueTracker/appsettings.json" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="IssueTracker" expanded="True">
+          <Node name="IssueTracker" expanded="True" selected="True">
             <Node name="IssueTracker" expanded="True">
               <Node name="Areas" expanded="True">
                 <Node name="Identity" expanded="True">
                   <Node name="Pages" expanded="True">
                     <Node name="Account" expanded="True">
-                      <Node name="Manage" expanded="True" />
                       <Node name="LoginWith2fa.cshtml" expanded="True" />
                     </Node>
                   </Node>
@@ -35,7 +35,6 @@
               <Node name="Views" expanded="True">
                 <Node name="Shared" expanded="True" />
               </Node>
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
