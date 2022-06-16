@@ -23,7 +23,37 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Contact()
+    public IActionResult Projects()
+    {
+        return View();
+    }
+
+    public IActionResult Tickets()
+    {
+        return View();
+    }
+
+    public IActionResult Profile()
+    {
+        return View();
+    }
+
+    public IActionResult CreateTicket()
+    {
+        return View();
+    }
+
+    public IActionResult ViewTicket()
+    {
+        return View();
+    }
+
+    public IActionResult ManageRoles()
+    {
+        return View();
+    }
+
+    public IActionResult ManageUsers()
     {
         return View();
     }
