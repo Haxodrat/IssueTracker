@@ -43,7 +43,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult ViewTicket()
+    public IActionResult ViewTickets()
     {
         return View();
     }
