@@ -1,3 +1,58 @@
 ﻿@{
-    ViewData["Title"] = "Manage Role Assignments";
+    ViewData["Title"] = "Manage User Roles";
+}
+
+@section Scripts2
+{
+    <link rel="stylesheet" href="../../dist/plugins/select2/css/select2.min.css">
+}
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Change or Update User Roles</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Select 1 or More Users:</label>
+                    <div class="select2-blue">
+                        <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                            <option>Wayne Gretsky</option>
+                            <option>Connor McDavid</option>
+                            <option>Michael Jordan</option>
+                            <option>Lebron James</option>
+                            <option>Babe Ruth</option>
+                            <option>Tracy McGrady</option>
+                            <option>Vince Carter</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select the Role to Assign:</label>
+                    <select class="select2 form-control" style="width: 100%;">
+                        <option selected="selected">N/A</option>
+                        <option>Admin</option>
+                        <option>Developer</option>
+                        <option>Project Manager</option>
+                        <option>Submitter</option>
+                        <option>Demo Admin</option>
+                        <option>Demo Developer</option>
+                        <option>Demo Project Manager</option>
+                        <option>Demo Submitter</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+@section Scripts{
+    <script src="../../dist/plugins/select2/js/select2.full.min.js"></script>
+    <script>$(function () {
+            $('.select2').select2()
+
+        })</script>
 }
