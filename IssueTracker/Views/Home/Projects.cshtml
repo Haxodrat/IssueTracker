@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "My Projects";
+    ViewData["Title"] = "Your Projects";
 }
 
 @section Scripts2
@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="../../dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 }
 
-<div class="card">
+<a asp-controller="Home" asp-action="CreateProjects" type="button" class="btn btn-success btn-block col-md-2 mb-3"><i class="fas fa-plus-square"></i>  Create New Project</a>
+<div class="card card-info">
+
     <div class="card-header">
-        <h3 class="card-title">DataTable with default features</h3>
+        <h3 class="card-title">Your Projects</h3>
     </div>
 
     <div class="card-body">
@@ -22,10 +24,10 @@
                         <thead>
                             <tr>
                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Project Name: activate to sort column descending">Project Name</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="">Browser</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="">Platform(s)</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">Engine version</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">CSS grade</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="">Description</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="User(s): activate to sort column ascending" style="">User(s)</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Manage User(s): activate to sort column ascending" style="">Manage User(s)</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="">Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,7 +92,11 @@
                                 <td style="">Netscape Navigator 9</td>
                                 <td style="">Win 98+ / OSX.2+</td>
                                 <td style="">1.8</td>
-                                <td style="">A</td>
+                                <td style="">
+                                    <a class="btn btn-rounded" asp-controller="Home" asp-action="CreateProjects" role="button">
+                                        Create
+                                    </a>
+                                </td>
                             </tr>
                             <tr class="even">
                                 <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
@@ -110,10 +116,10 @@
                         <tfoot>
                             <tr>
                                 <th rowspan="1" colspan="1">Project Name</th>
-                                <th rowspan="1" colspan="1" style="">Browser</th>
-                                <th rowspan="1" colspan="1" style="">Platform(s)</th>
-                                <th rowspan="1" colspan="1" style="">Engine version</th>
-                                <th rowspan="1" colspan="1" style="">CSS grade</th>
+                                <th rowspan="1" colspan="1" style="">Description</th>
+                                <th rowspan="1" colspan="1" style="">User(s)</th>
+                                <th rowspan="1" colspan="1" style="">Manage User(s)</th>
+                                <th rowspan="1" colspan="1" style="">Details</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -140,7 +146,13 @@
     <script>$(function () {
             $("#example1").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                "columnDefs": [{
+                    "targets": [3, 4],
+                    "orderable": false,
+                    "bSort": false
+                }]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });</script>
+
 }

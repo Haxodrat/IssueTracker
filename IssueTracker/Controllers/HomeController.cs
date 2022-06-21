@@ -18,6 +18,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult CreateProjects()
+    {
+        return View();
+    }
+
     public IActionResult Projects()
     {
         return View();
