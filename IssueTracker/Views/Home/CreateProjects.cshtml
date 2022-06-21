@@ -6,19 +6,14 @@
 {
     <link rel="stylesheet" href="../../dist/plugins/select2/css/select2.min.css">
 }
+
 <!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-primary">
+            <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">General</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -60,16 +55,17 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a asp-controller="Home" asp-action="CreateProjects" class="btn btn-secondary">Cancel</a>
+                            <input type="submit" value="Create new Project" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success">
+                        </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
         </div>
-    
-    <div class="row">
-        <div class="col-12">
-            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-success">Cancel</a>
-            <input type="submit" value="Create new Project" class="btn btn-success float-right">
     </div>
 </section>
 <!-- /.content -->
@@ -78,24 +74,21 @@
         <div class="modal-content bg-success">
             <div class="modal-header">
                 <h4 class="modal-title">Success Modal</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-light">Save changes</button>
+                <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-outline-light">Back to Dashboard</a>
+                <a type="button" asp-controller="Home" asp-action="Projects" class="btn btn-outline-light">Your Projects</a>
             </div>
         </div>
 
     </div>
 
 </div>
-  </div>
 <!-- /.content-wrapper -->
+
 @section Scripts{
     <script src="../../dist/plugins/select2/js/select2.full.min.js"></script>
     <script>$(function () {
