@@ -6,15 +6,20 @@
 {
     <link rel="stylesheet" href="../../dist/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="../../dist/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 }
-<div class="card card-info">
-    <div class="card-header">
-        <h3 class="card-title">Change or Update User Roles</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Change or Update User Roles
+                </h3>
+            </div>
+            <div class="card-body">
+
                 <div class="form-group">
                     <label>Select 1 or More Users:</label>
                     <div class="select2-blue">
@@ -51,7 +56,65 @@
             </div>
         </div>
     </div>
-    <!-- /.card-body -->
+
+    <div class="col-md-6">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Current User Roles
+                </h3>
+            </div>
+
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                    <thead>
+                        <tr>
+                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="User: activate to sort column descending">User</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd">
+                            <td class="dtr-control sorting_1" tabindex="0">Wayne Gretsky</td>
+                            <td style="">Admin</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="dtr-control sorting_1" tabindex="0">Connor McDavid</td>
+                            <td style="">Developer</td>
+                        </tr>
+                        <tr class="odd">
+                            <td class="dtr-control sorting_1" tabindex="0">Michael Jordan</td>
+                            <td style="">Project Manager</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="dtr-control sorting_1" tabindex="0">Lebron James</td>
+                            <td style="">Demo Submitter</td>
+                        </tr>
+                        <tr class="odd">
+                            <td class="sorting_1 dtr-control" tabindex="0">Babe Ruth</td>
+                            <td style="">Submitter</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="sorting_1 dtr-control" tabindex="0">Tracy McGrady</td>
+                            <td style="">Demo Admin</td>
+                        </tr>
+                        <tr class="odd">
+                            <td class="sorting_1 dtr-control" tabindex="0">Vince Carter</td>
+                            <td style="">Demo Developer</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th rowspan="1" colspan="1">User</th>
+                            <th rowspan="1" colspan="1" style="">Role</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
 @section Scripts{
@@ -75,5 +138,22 @@
                     title: "Ryan Tobin's role has been changed to Admin."
                 })
             });
+        });</script>
+    <script src="../../dist/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../dist/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../dist/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../dist/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../dist/plugins/jszip/jszip.min.js"></script>
+    <script src="../../dist/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../dist/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../dist/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../dist/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../dist/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script>$(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });</script>
 }
