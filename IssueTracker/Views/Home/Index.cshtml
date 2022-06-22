@@ -92,29 +92,24 @@
 @section Scripts
 {
     <script>$(function () {
-            /* ChartJS
-             * -------
-             * Here we will create a few charts using ChartJS
-             */
 
             //-------------
-            //- DONUT CHART -
+            //- Ticket Type CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-            var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-            var donutData = {
+
+            var typeCanvas = $('#donutChart').get(0).getContext('2d')
+            var typeData = {
                 labels: [
-                    'Chrome',
-                    'IE',
-                    'FireFox',
-                    'Safari',
-                    'Opera',
-                    'Navigator',
+                    'Bugs/Errors',
+                    'Feature Requests',
+                    'Other Comments',
+                    'Styling Comments',
                 ],
                 datasets: [
                     {
-                        data: [700, 500, 400, 600, 300, 100],
-                        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                        data: [11, 6, 3, 1],
+                        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef'],
                     }
                 ]
             }
@@ -122,11 +117,10 @@
                 maintainAspectRatio: false,
                 responsive: true,
             }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(donutChartCanvas, {
+
+            new Chart(typeCanvas, {
                 type: 'doughnut',
-                data: donutData,
+                data: typeData,
                 options: donutOptions
             })
 
@@ -134,25 +128,40 @@
             //- PIE CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
+            var userCanvas = $('#pieChart').get(0).getContext('2d')
+            var userData = {
+                labels: [
+                    'Michael Jordan',
+                    'Lebron James',
+                    'Connor McDavid',
+                    'Wayne Gretsky',
+                    'Babe Ruth',
+                ],
+                datasets: [
+                    {
+                        data: [11, 6, 3, 1, 5],
+                        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
+                    }
+                ]
+            };
+
             var pieOptions = {
                 maintainAspectRatio: false,
                 responsive: true,
             }
             //Create pie or douhnut chart
             // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
+            new Chart(userCanvas, {
                 type: 'pie',
-                data: pieData,
+                data: userData,
                 options: pieOptions
             })
 
             //-------------
-            //- BAR CHART -
+            //- Priority CHART -
             //-------------
 
-            var areaChartData = {
+            var priorityData = {
                 labels: ['None', 'Low', 'Medium', 'High', 'Urgent'],
                 datasets: [
                     {
@@ -170,8 +179,7 @@
                 ],
             }
 
-            var barChartCanvas = $('#barChart').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
+            var priorityCanvas = $('#barChart').get(0).getContext('2d')
 
             var barChartOptions = {
                 responsive: true,
@@ -188,34 +196,39 @@
                 }
             }
 
-            new Chart(barChartCanvas, {
+            new Chart(priorityCanvas, {
                 type: 'bar',
-                data: barChartData,
+                data: priorityData,
                 options: barChartOptions
             })
 
-            //second bar chart
-            var barChartCanvas2 = $('#barChart2').get(0).getContext('2d')
-            var barChartData2 = $.extend(true, {}, areaChartData)
+            //-------------
+            //- Status CHART -
+            //-------------
 
-            var barChartOptions2 = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 15,
-                            stepSize: 3
-                        }
-                    }]
-                }
+            var statusData = {
+                labels: ['None', 'Open', 'In Progress', 'Resolved', 'Info Needed'],
+                datasets: [
+                    {
+                        label: 'Tickets',
+                        backgroundColor: 'rgba(210, 214, 222, 1)',
+                        borderColor: 'rgba(210, 214, 222, 1)',
+                        pointRadius: false,
+                        pointColor: 'rgba(210, 214, 222, 1)',
+                        pointStrokeColor: '#c1c7d1',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(220,220,220,1)',
+                        data: [6, 11, 7, 2, 4],
+                        backgroundColor: ['#bcd2e8', '#91BAD6', '#73a5c6', '#528aae', '#1e3f66'],
+                    },
+                ],
             }
-            new Chart(barChartCanvas2, {
+            var statusCanvas = $('#barChart2').get(0).getContext('2d')
+
+            new Chart(statusCanvas, {
                 type: 'bar',
-                data: barChartData2,
-                options: barChartOptions2
+                data: statusData,
+                options: barChartOptions
             })
 
         })</script>
