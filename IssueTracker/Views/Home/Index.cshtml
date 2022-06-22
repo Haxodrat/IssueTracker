@@ -164,9 +164,10 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [8, 6, 9, 3, 1]
+                        data: [8, 6, 9, 3, 1],
+                        backgroundColor: ['#f6bdc0', '#f69697', '#ee6b6e', '#f94449', '#de0a26'],
                     },
-                ]
+                ],
             }
 
             var barChartCanvas = $('#barChart').get(0).getContext('2d')
@@ -175,7 +176,16 @@
             var barChartOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
-                datasetFill: false
+                datasetFill: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 15,
+                            stepSize: 3
+                        }
+                    }]
+                }
             }
 
             new Chart(barChartCanvas, {
@@ -191,7 +201,16 @@
             var barChartOptions2 = {
                 responsive: true,
                 maintainAspectRatio: false,
-                datasetFill: false
+                datasetFill: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 15,
+                            stepSize: 3
+                        }
+                    }]
+                }
             }
             new Chart(barChartCanvas2, {
                 type: 'bar',
