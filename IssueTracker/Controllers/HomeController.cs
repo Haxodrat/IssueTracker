@@ -18,12 +18,22 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult CreateProjects()
+    public IActionResult Projects()
     {
         return View();
     }
 
-    public IActionResult Projects()
+    public IActionResult CreateProject()
+    {
+        return View();
+    }
+
+    public IActionResult ProjectDetails()
+    {
+        return View();
+    }
+
+    public IActionResult EditProject()
     {
         return View();
     }
@@ -33,20 +43,26 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Profile()
-    {
-        return View();
-    }
-
     public IActionResult CreateTicket()
     {
         return View();
     }
 
-    public IActionResult ViewTickets()
+    public IActionResult EditTicket()
     {
         return View();
     }
+
+    public IActionResult TicketDetails()
+    {
+        return View();
+    }
+
+    public IActionResult Profile()
+    {
+        return View();
+    }
+
 
     public IActionResult ManageRoles()
     {
@@ -54,11 +70,6 @@ public class HomeController : Controller
     }
 
     public IActionResult ManageUsers()
-    {
-        return View();
-    }
-
-    public IActionResult Details()
     {
         return View();
     }
