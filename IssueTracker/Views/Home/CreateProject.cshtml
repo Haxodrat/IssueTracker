@@ -21,6 +21,20 @@
                         <input type="text" id="inputName" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Assigned Tickets</label>
+                        <div class="select2-red">
+                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-red" data-placeholder="Select a Ticket" style="width: 100%;">
+                                <option>Rich</option>
+                                <option>Kimchi</option>
+                                <option>Software Ticket</option>
+                                <option>All about Me</option>
+                                <option>Chris sucks</option>
+                                <option>Ryan too</option>
+                                <option>His name is jay lol</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="inputDescription">Project Description</label>
                         <textarea id="inputDescription" class="form-control" rows="4"></textarea>
                     </div>
@@ -38,8 +52,13 @@
                         <input type="text" id="inputClientCompany" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="inputProjectLeader">Project Leader</label>
-                        <input type="text" id="inputProjectLeader" class="form-control">
+                        <label for="inputStatus">Project Leader</label>
+                        <select id="inputStatus" class="form-control custom-select">
+                            <option selected disabled>Select one</option>
+                            <option>Chris</option>
+                            <option>Ryan</option>
+                            <option>Jay</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Select 1 or More Users:</label>

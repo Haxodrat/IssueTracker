@@ -1,3 +1,135 @@
 ﻿@{
     ViewData["Title"] = "Create a Ticket";
 }
+
+@section Scripts2
+{
+    <link rel="stylesheet" href="../../dist/plugins/select2/css/select2.min.css">
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">General</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="inputName">Ticket Title</label>
+                        <input type="text" id="inputName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStatus">Project Name</label>
+                        <select id="inputStatus" class="form-control custom-select">
+                            <option selected disabled>Select one</option>
+                            <option>Calcuvate</option>
+                            <option>TicTaceToe</option>
+                            <option>Algorithms</option>
+                            <option>Hospital Management</option>
+                            <option>Music Shop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription">Ticket Description</label>
+                        <textarea id="inputDescription" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStatus">Issued By</label>
+                        <select id="inputStatus" class="form-control custom-select">
+                            <option selected disabled>Select one</option>
+                            <option>Wayne Gretsky</option>
+                            <option>Connor McDavid</option>
+                            <option>Michael Jordan</option>
+                            <option>Lebron James</option>
+                            <option>Babe Ruth</option>
+                            <option>Tracy McGrady</option>
+                            <option>Vince Carter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStatus">Ticket Priority</label>
+                        <select id="inputStatus" class="form-control custom-select">
+                            <option selected disabled>Select one</option>
+                            <option>None</option>
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                            <option>Urgent</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStatus">Status</label>
+                        <select id="inputStatus" class="form-control custom-select">
+                            <option selected disabled>Select one</option>
+                            <option>New</option>
+                            <option>In Progress</option>
+                            <option>Completed</option>
+                            <option>More Info Needed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStatus">Ticket Type</label>
+                        <select id="inputStatus" class="form-control custom-select">
+                            <option selected disabled>Select one</option>
+                            <option>Bugs/Errors</option>
+                            <option>Comments</option>
+                            <option>Feature Qualities</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Developer(s):</label>
+                        <div class="select2-green">
+                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-green" data-placeholder="Select a Developer" style="width: 100%;">
+                                <option>Wayne Gretsky</option>
+                                <option>Connor McDavid</option>
+                                <option>Michael Jordan</option>
+                                <option>Lebron James</option>
+                                <option>Babe Ruth</option>
+                                <option>Tracy McGrady</option>
+                                <option>Vince Carter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a asp-controller="Home" asp-action="CreateTicket" class="btn btn-secondary">Cancel</a>
+                            <input type="submit" value="Create New Ticket" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+<div class="modal fade" id="modal-success">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-success">
+            <div class="modal-header">
+                <h4 class="modal-title">Success!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Your ticket has been created.</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-outline-light">Back to Dashboard</a>
+                <a type="button" asp-controller="Home" asp-action="Tickets" class="btn btn-outline-light">Your Tickets</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script src="../../dist/plugins/select2/js/select2.full.min.js"></script>
+    <script>$(function () {
+            $('.select2').select2()
+
+        })</script>
+}
