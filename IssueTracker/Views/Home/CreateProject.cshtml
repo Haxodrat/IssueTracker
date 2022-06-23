@@ -13,17 +13,17 @@
         <div class="col-md-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">General</h3>
+                    <h3 class="card-title">Enter Your Project Details:</h3>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="inputName">Project Name</label>
+                        <label for="inputName">Project Name:</label>
                         <input type="text" id="inputName" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Assigned Tickets</label>
-                        <div class="select2-red">
-                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-red" data-placeholder="Select a Ticket" style="width: 100%;">
+                        <label>Assigned Tickets:</label>
+                        <div class="select2-green">
+                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-green" data-placeholder="Select a Ticket" style="width: 100%;">
                                 <option>Rich</option>
                                 <option>Kimchi</option>
                                 <option>Software Ticket</option>
@@ -35,35 +35,37 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputDescription">Project Description</label>
+                        <label for="inputDescription">Project Description:</label>
                         <textarea id="inputDescription" class="form-control" rows="4"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Status</label>
+                        <label for="inputStatus">Status:</label>
                         <select id="inputStatus" class="form-control custom-select">
-                            <option selected disabled>Select one</option>
+                            <option selected disabled>Select a Status</option>
+                            <option>In Development</option>
                             <option>On Hold</option>
-                            <option>Canceled</option>
-                            <option>Success</option>
+                            <option>Revising</option>
+                            <option>Completed</option>
+                            <option>Withdrawn</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputClientCompany">Client Company</label>
+                        <label for="inputClientCompany">Client Company:</label>
                         <input type="text" id="inputClientCompany" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Project Leader</label>
-                        <select id="inputStatus" class="form-control custom-select">
-                            <option selected disabled>Select one</option>
+                        <label for="inputLeader">Project Leader:</label>
+                        <select id="inputLeader" class="form-control custom-select">
+                            <option selected disabled>Select a Project Leader</option>
                             <option>Chris</option>
                             <option>Ryan</option>
                             <option>Jay</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Select 1 or More Users:</label>
-                        <div class="select2-blue">
-                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                        <label>Select 1 or More Contributors:</label>
+                        <div class="select2-green">
+                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-green" data-placeholder="Select a User" style="width: 100%;">
                                 <option>Wayne Gretsky</option>
                                 <option>Connor McDavid</option>
                                 <option>Michael Jordan</option>
