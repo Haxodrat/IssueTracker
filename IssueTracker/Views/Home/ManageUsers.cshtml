@@ -1,3 +1,254 @@
 ﻿@{
     ViewData["Title"] = "Manage Users";
 }
+
+@section Scripts2
+{
+    <link rel="stylesheet" href="../../dist/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
+
+<div class="row">
+    <div class="col-6">
+        <div class="card card-info">
+            <div class="card-header">
+                Modify User Projects
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Select 1 or More Users:</label>
+                    <div class="select2-blue">
+                        <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                            <option>Wayne Gretsky</option>
+                            <option>Connor McDavid</option>
+                            <option>Michael Jordan</option>
+                            <option>Lebron James</option>
+                            <option>Babe Ruth</option>
+                            <option>Tracy McGrady</option>
+                            <option>Vince Carter</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select Project(s) to Assign:</label>
+                    <div class="select2-blue">
+                        <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Project" style="width: 100%;">
+                            <option>Sudoku</option>
+                            <option>Calcuvate</option>
+                            <option>Sorting Algorithms</option>
+                            <option>Issue Tracker</option>
+                            <option>Bug Tracker</option>
+                            <option>Tic Tac Toe</option>
+                            <option>Riemann Sum Visualizer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="submit" value="Modify User Projects" class="btn btn-success swalDefaultSuccess float-left">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-danger">
+            <div class="card-header">
+                Remove User
+            </div>
+            <div class="card-body">
+                <form id="quickForm">
+                    <div class="form-group">
+                        <label>Select 1 or More Users:</label>
+                        <div class="select2-danger">
+                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-danger" name="inputUsers" id="inputUsers" data-placeholder="Select a User" style="width: 100%;">
+                                <option>Wayne Gretsky</option>
+                                <option>Connor McDavid</option>
+                                <option>Michael Jordan</option>
+                                <option>Lebron James</option>
+                                <option>Babe Ruth</option>
+                                <option>Tracy McGrady</option>
+                                <option>Vince Carter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                            <label class="custom-control-label" for="exampleCheck1">I understand this will delete all data associated with the user.</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="submit" value="Remove User" class="btn btn-danger mt-3 swalDefaultSuccess2 float-left">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card card-info">
+            <div class="card-header">
+                Your Personnel
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                    <thead>
+                        <tr>
+                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="User: activate to sort column descending">User</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="">Role</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Current Projects: activate to sort column ascending" style="">Current Projects</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd">
+                            <td class="dtr-control sorting_1" tabindex="0">Wayne Gretsky</td>
+                            <td style="">Admin</td>
+                            <td style="">Calcuvate</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="dtr-control sorting_1" tabindex="0">Connor McDavid</td>
+                            <td style="">Developer</td>
+                            <td style="">Sorting Algorithms</td>
+                        </tr>
+                        <tr class="odd">
+                            <td class="dtr-control sorting_1" tabindex="0">Michael Jordan</td>
+                            <td style="">Project Manager</td>
+                            <td style="">Issue Tracker</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="dtr-control sorting_1" tabindex="0">Lebron James</td>
+                            <td style="">Demo Submitter</td>
+                            <td style="">Calcuvate</td>
+                        </tr>
+                        <tr class="odd">
+                            <td class="sorting_1 dtr-control" tabindex="0">Babe Ruth</td>
+                            <td style="">Submitter</td>
+                            <td style="">Issue Tracker</td>
+                        </tr>
+                        <tr class="even">
+                            <td class="sorting_1 dtr-control" tabindex="0">Tracy McGrady</td>
+                            <td style="">Demo Admin</td>
+                            <td style="">Sudoku</td>
+                        </tr>
+                        <tr class="odd">
+                            <td class="sorting_1 dtr-control" tabindex="0">Vince Carter</td>
+                            <td style="">Demo Developer</td>
+                            <td style="">Tic Tac Toe</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th rowspan="1" colspan="1">User</th>
+                            <th rowspan="1" colspan="1" style="">Role</th>
+                            <th rowspan="1" colspan="1" style="">Current Projects</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="../../dist/plugins/select2/js/select2.full.min.js"></script>
+    <script src="../../dist/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script>$(function () {
+            $('.select2').select2()
+
+        })</script>
+    <script>$(function () {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            $('.swalDefaultSuccess').click(function () {
+                Toast.fire({
+                    icon: 'success',
+                    title: "These projects have been assigned."
+                })
+            });
+            $('.swalDefaultSuccess2').click(function () {
+                Toast.fire({
+                    icon: 'success',
+                    title: "Ryan Tobin has been removed from the database."
+                })
+            });
+        });</script>
+    <script src="../../dist/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../dist/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script>$(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });</script>
+    <script src="../../dist/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../../dist/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script>$(function () {
+            $.validator.setDefaults({
+                submitHandler: function () {
+                }
+            });
+            $('#quickForm').validate({
+                rules: {
+                    inputUsers: {
+                        required: true,
+                    },
+                    terms: {
+                        required: true
+                    },
+                },
+                messages: {
+                    inputUsers: {
+                        required: "Please select a user.",
+                    },
+                    terms: "Please accept our terms."
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+            $('#quickForm2').validate({
+                rules: {
+                    inputUsers: {
+                        required: true,
+                    },
+                    inputProjects: {
+                        required: true
+                    },
+                },
+                messages: {
+                    inputUsers: {
+                        required: "Please select a user.",
+                    },
+                    terms: "Please select a project."
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });</script>
+}
