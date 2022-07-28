@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Sign Up";
 }
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Registration Page (v2)</title>
+    <title>Issue Tracker| Sign Up</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -30,40 +30,78 @@
                 <p class="login-box-msg">Create a new account.</p>
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Full name">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="First name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="email" asp-for="Input.Email" class="form-control" placeholder="Email" aria-required="true">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Last name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <input type="email" asp-for="Input.Email" class="form-control" placeholder="Email" aria-required="true">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
                             </div>
                         </div>
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" asp-for="Input.Password" class="form-control" aria-required="true" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <input type="password" asp-for="Input.Password" class="form-control" aria-required="true" placeholder="Password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
                             </div>
                         </div>
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" asp-for="Input.ConfirmPassword" class="form-control" aria-required="true" placeholder="Confirm password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <input type="password" asp-for="Input.ConfirmPassword" class="form-control" aria-required="true" placeholder="Confirm password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
                             </div>
                         </div>
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <select id="inputName" class="form-control custom-select">
+                                <option selected disabled>Select a Role</option>
+                                <option>Admin</option>
+                                <option>Developer</option>
+                                <option>Project Manager</option>
+                                <option>Submitter</option>
+                                <option>Demo Admin</option>
+                                <option>Demo Developer</option>
+                                <option>Demo Project Manager</option>
+                                <option>Demo Submitter</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-tag"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-8">
@@ -76,7 +114,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" id="registerSubmit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" id="registerSubmit" class="btn btn-primary btn-block">Sign Up</button>
                         </div>
                         <!-- /.col -->
                     </div>
