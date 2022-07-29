@@ -32,23 +32,25 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-floating mb-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="First name">
+                            <input type="text" asp-for="Input.FirstName" class="form-control" placeholder="First name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Last name">
+                            <input type="text" asp-for="Input.LastName" class="form-control" placeholder="Last name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3">
                         <div class="input-group">
@@ -87,14 +89,14 @@
                         <div class="input-group">
                             <select id="inputName" class="form-control custom-select">
                                 <option selected disabled>Select a Role</option>
-                                <option>Admin</option>
-                                <option>Developer</option>
-                                <option>Project Manager</option>
-                                <option>Submitter</option>
-                                <option>Demo Admin</option>
-                                <option>Demo Developer</option>
-                                <option>Demo Project Manager</option>
-                                <option>Demo Submitter</option>
+                                <option value="0">Admin</option>
+                                <option value="1">Developer</option>
+                                <option value="2">Project Manager</option>
+                                <option value="3">Submitter</option>
+                                <option value="4">Demo Admin</option>
+                                <option value="5">Demo Developer</option>
+                                <option value="6">Demo Project Manager</option>
+                                <option value="7">Demo Submitter</option>
                             </select>
                             <div class="input-group-append">
                                 <div class="input-group-text">

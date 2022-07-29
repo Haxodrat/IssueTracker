@@ -1,7 +1,6 @@
 /Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/appsettings.Development.json
 /Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/appsettings.json
 /Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/IssueTracker.staticwebassets.runtime.json
-/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/app.db
 /Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/IssueTracker
 /Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/IssueTracker.deps.json
 /Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/bin/Release/net6.0/IssueTracker.runtimeconfig.json
