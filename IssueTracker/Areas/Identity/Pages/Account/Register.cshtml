@@ -104,15 +104,17 @@
                                 </div>
                             </div>
                         </div>
+                        <span asp-validation-for="Input.Role" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <input type="checkbox" asp-for="Input.TermsAndConditions" id="agreeTerms" name="terms" value="agree">
                                 <label for="agreeTerms">
                                     I agree to the <a href="#">terms</a>
                                 </label>
                             </div>
+                            <span asp-validation-for="Input.TermsAndConditions" class="text-danger"></span>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">

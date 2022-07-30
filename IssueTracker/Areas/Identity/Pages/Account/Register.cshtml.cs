@@ -110,9 +110,11 @@ namespace IssueTracker.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
             [Display(Name = "Role")]
-            public int RoleNumber { get; set; }
+            public string Role { get; set; }
+
+            [Display(Name = "Terms and Conditions")]
+            public bool TermsAndConditions { get; set; }
 
         }
 
@@ -133,7 +135,7 @@ namespace IssueTracker.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.RoleNumber = Input.RoleNumber;
+                user.Role = Input.Role;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -141,7 +143,6 @@ namespace IssueTracker.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

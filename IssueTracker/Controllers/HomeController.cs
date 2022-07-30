@@ -2,17 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using IssueTracker.Models;
 using Microsoft.AspNetCore.Authorization;
+using IssueTracker.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace IssueTracker.Controllers;
 
 [Authorize]
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private IssueTrackerIdentityDbContext application;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IssueTrackerIdentityDbContext app)
     {
-        _logger = logger;
+        application = app;
     }
 
     public IActionResult Index()
@@ -68,12 +70,14 @@ public class HomeController : Controller
 
     public IActionResult ManageRoles()
     {
-        return View();
+        var users = application.Users.ToList();
+        return View(users);
     }
 
     public IActionResult ManageUsers()
     {
-        return View();
+        var users = application.Users.ToList();
+        return View(users);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

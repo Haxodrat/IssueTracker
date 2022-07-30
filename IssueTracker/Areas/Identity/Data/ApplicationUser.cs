@@ -11,6 +11,6 @@ namespace IssueTracker.Areas.Identity.Data
 
         public String? LastName { get; set; }
 
-        public int? RoleNumber { get; set; }
+        public String? Role { get; set; }
     }
 }

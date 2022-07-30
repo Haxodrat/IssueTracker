@@ -1,4 +1,7 @@
-﻿@{
+﻿@using IssueTracker.Areas.Identity.Data;
+@model IEnumerable<ApplicationUser>
+
+@{
     ViewData["Title"] = "Manage User Roles";
 }
 
@@ -24,13 +27,13 @@
                     <label>Select 1 or More Users:</label>
                     <div class="select2-blue">
                         <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
-                            <option>Wayne Gretsky</option>
-                            <option>Connor McDavid</option>
-                            <option>Michael Jordan</option>
-                            <option>Lebron James</option>
-                            <option>Babe Ruth</option>
-                            <option>Tracy McGrady</option>
-                            <option>Vince Carter</option>
+                            @if (Model.Any())
+                            {
+                                foreach (var user in Model)
+                                {
+                                    <option>@(user.FirstName + " " + user.LastName)</option>
+                                }
+                            }
                         </select>
                     </div>
                 </div>
@@ -74,34 +77,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd">
-                            <td class="dtr-control sorting_1" tabindex="0">Wayne Gretsky</td>
-                            <td style="">Admin</td>
-                        </tr>
-                        <tr class="even">
-                            <td class="dtr-control sorting_1" tabindex="0">Connor McDavid</td>
-                            <td style="">Developer</td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="dtr-control sorting_1" tabindex="0">Michael Jordan</td>
-                            <td style="">Project Manager</td>
-                        </tr>
-                        <tr class="even">
-                            <td class="dtr-control sorting_1" tabindex="0">Lebron James</td>
-                            <td style="">Demo Submitter</td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="sorting_1 dtr-control" tabindex="0">Babe Ruth</td>
-                            <td style="">Submitter</td>
-                        </tr>
-                        <tr class="even">
-                            <td class="sorting_1 dtr-control" tabindex="0">Tracy McGrady</td>
-                            <td style="">Demo Admin</td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="sorting_1 dtr-control" tabindex="0">Vince Carter</td>
-                            <td style="">Demo Developer</td>
-                        </tr>
+                        @if (Model.Any())
+                        {
+                            foreach (var user in Model)
+                            {
+                                <tr class="odd">
+                                    <td class="dtr-control sorting_1" tabindex="0">@(user.FirstName + " " + user.LastName)</td>
+                                    <td style="">Admin</td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                     <tfoot>
                         <tr>
