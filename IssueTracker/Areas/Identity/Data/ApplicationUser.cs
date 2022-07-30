@@ -14,4 +14,3 @@ namespace IssueTracker.Areas.Identity.Data
         public int? RoleNumber { get; set; }
     }
 }
-
