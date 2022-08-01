@@ -3,17 +3,20 @@ using Microsoft.AspNetCore.Identity;
 using IssueTracker.Areas.Identity.Data;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using System.Runtime.CompilerServices;
 
 namespace IssueTracker.Models
 {
-    public class ApplicationUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser>
+    public class ApplicationUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public ApplicationUserClaimsPrincipalFactory(UserManager<ApplicationUser> userManager,
-            IOptions<IdentityOptions> options) : base(userManager, options)
+        public ApplicationUserClaimsPrincipalFactory(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+            IOptions<IdentityOptions> options) : base(userManager, roleManager, options)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)

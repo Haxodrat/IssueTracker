@@ -116,7 +116,7 @@
         </li>
         <!-- Hello User  -->
         <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(User.FindFirst("FirstName").Value)!</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.FindFirst("FirstName").Value!</a>
         </li>
         <!-- Logout -->
         <li class="nav-item d-none d-sm-inline-block">

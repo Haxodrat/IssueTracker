@@ -96,6 +96,7 @@ public class HomeController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = "Project Manager")]
     public IActionResult ManageUsers()
     {
         var model = new List<UserRoleViewModel>();
