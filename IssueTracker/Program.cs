@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using IssueTracker.Data;
 using IssueTracker.Areas.Identity.Data;
 using IssueTracker.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using IssueTracker.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +14,17 @@ builder.Services.AddDbContext<IssueTrackerIdentityDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IssueTrackerIdentityDbContext>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireDemoAdmin", policy => policy.RequireRole("Demo Admin"));
+    options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
+});
 
 var app = builder.Build();
 
@@ -31,6 +39,7 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

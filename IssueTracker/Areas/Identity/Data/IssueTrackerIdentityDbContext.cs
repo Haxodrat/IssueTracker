@@ -2,11 +2,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using IssueTracker.Models;
 
 namespace IssueTracker.Areas.Identity.Data;
 
 public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
 {
+    public DbSet<ProjectModel> Projects { get; set; }
+
+    public IssueTrackerIdentityDbContext()
+    {
+
+    }
 
     public IssueTrackerIdentityDbContext(DbContextOptions<IssueTrackerIdentityDbContext> options)
         : base(options)
@@ -22,6 +29,8 @@ public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
+
+
 }
 
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>

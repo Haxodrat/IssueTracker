@@ -1,4 +1,6 @@
 ﻿@using IssueTracker.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
 @model IEnumerable<ApplicationUser>
 
 @{
@@ -112,7 +114,7 @@
                             {
                                 <tr class="odd">
                                     <td class="dtr-control sorting_1" tabindex="0">@(user.FirstName + " " + user.LastName)</td>
-                                    <td style="">@user.Role</td>
+                                    <td style="">@User.FindFirst("Role")</td>
                                     <td style="">Calcuvate</td>
                                 </tr>
                             }

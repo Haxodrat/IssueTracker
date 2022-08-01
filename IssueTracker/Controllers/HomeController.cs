@@ -4,6 +4,7 @@ using IssueTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using IssueTracker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace IssueTracker.Controllers;
 
@@ -11,10 +12,12 @@ namespace IssueTracker.Controllers;
 public class HomeController : Controller
 {
     private IssueTrackerIdentityDbContext application;
+    private UserManager<ApplicationUser> userManager;
 
-    public HomeController(IssueTrackerIdentityDbContext app)
+    public HomeController(IssueTrackerIdentityDbContext app, UserManager<ApplicationUser> userManager)
     {
         application = app;
+        this.userManager = userManager;
     }
 
     public IActionResult Index()
@@ -77,6 +80,8 @@ public class HomeController : Controller
     public IActionResult ManageUsers()
     {
         var users = application.Users.ToList();
+        //var currentUser = userManager.GetUserAsync(HttpContext.User);
+        //var roles = userManager.GetRolesAsync(currentUser);
         return View(users);
     }
 

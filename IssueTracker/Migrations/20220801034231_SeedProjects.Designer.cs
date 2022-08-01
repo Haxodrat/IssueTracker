@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueTracker.Migrations
 {
     [DbContext(typeof(IssueTrackerIdentityDbContext))]
-    [Migration("20220729033015_initial")]
-    partial class initial
+    [Migration("20220801034231_SeedProjects")]
+    partial class SeedProjects
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,8 +69,8 @@ namespace IssueTracker.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("RoleNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
@@ -92,6 +92,26 @@ namespace IssueTracker.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("IssueTracker.Models.ProjectModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("User")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
