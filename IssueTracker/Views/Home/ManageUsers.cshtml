@@ -1,7 +1,7 @@
 ﻿@using IssueTracker.Areas.Identity.Data;
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
-@model IEnumerable<ApplicationUser>
+@model List<UserRoleViewModel>
 
 @{
     ViewData["Title"] = "Manage Users";
@@ -31,7 +31,7 @@
                             {
                                 foreach (var user in Model)
                                 {
-                                    <option>@(user.FirstName + " " + user.LastName)</option>
+                                    <option>@user.userName</option>
                                 }
                             }
                         </select>
@@ -72,7 +72,7 @@
                                 {
                                     foreach (var user in Model)
                                     {
-                                        <option>@(user.FirstName + " " + user.LastName)</option>
+                                        <option>@user.userName</option>
                                     }
                                 }
                             </select>
@@ -113,8 +113,8 @@
                             foreach (var user in Model)
                             {
                                 <tr class="odd">
-                                    <td class="dtr-control sorting_1" tabindex="0">@(user.FirstName + " " + user.LastName)</td>
-                                    <td style="">@User.FindFirst("Role")</td>
+                                    <td class="dtr-control sorting_1" tabindex="0">@user.userName</td>
+                                    <td style="">@user.roleNames</td>
                                     <td style="">Calcuvate</td>
                                 </tr>
                             }

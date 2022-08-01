@@ -110,6 +110,7 @@ namespace IssueTracker.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [Required]
             [Display(Name = "Role")]
             public string Role { get; set; }
 
@@ -143,8 +144,8 @@ namespace IssueTracker.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-
                     var userId = await _userManager.GetUserIdAsync(user);
+                    await _userManager.AddToRoleAsync(user, Input.Role);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

@@ -13,11 +13,14 @@ public class HomeController : Controller
 {
     private IssueTrackerIdentityDbContext application;
     private UserManager<ApplicationUser> userManager;
+    private RoleManager<IdentityRole> roleManager;
 
-    public HomeController(IssueTrackerIdentityDbContext app, UserManager<ApplicationUser> userManager)
+    public HomeController(IssueTrackerIdentityDbContext app, UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager)
     {
         application = app;
         this.userManager = userManager;
+        this.roleManager = roleManager;
     }
 
     public IActionResult Index()
@@ -25,6 +28,7 @@ public class HomeController : Controller
         return View();
     }
 
+    [Authorize(Roles = "Demo Submitter")]
     public IActionResult Projects()
     {
         return View();
@@ -73,16 +77,44 @@ public class HomeController : Controller
 
     public IActionResult ManageRoles()
     {
-        var users = application.Users.ToList();
-        return View(users);
+        var model = new List<UserRoleViewModel>();
+
+        foreach (var user in userManager.Users)
+        {
+            var roleList = userManager.GetRolesAsync(user).Result;
+            var roles = string.Join(", ", roleList);
+
+            var userRoleViewModel = new UserRoleViewModel
+            {
+                userName = user.FirstName + " " + user.LastName,
+                roleNames = roles
+            };
+
+            model.Add(userRoleViewModel);
+        }
+
+        return View(model);
     }
 
     public IActionResult ManageUsers()
     {
-        var users = application.Users.ToList();
-        //var currentUser = userManager.GetUserAsync(HttpContext.User);
-        //var roles = userManager.GetRolesAsync(currentUser);
-        return View(users);
+        var model = new List<UserRoleViewModel>();
+
+        foreach (var user in userManager.Users)
+        {
+            var roleList = userManager.GetRolesAsync(user).Result;
+            var roles = string.Join(", ", roleList);
+
+            var userRoleViewModel = new UserRoleViewModel
+            {
+                userName = user.FirstName + " " + user.LastName,
+                roleNames = roles
+            };
+
+            model.Add(userRoleViewModel);
+        }
+
+        return View(model);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

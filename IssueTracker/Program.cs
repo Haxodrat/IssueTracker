@@ -20,12 +20,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("RequireDemoAdmin", policy => policy.RequireRole("Demo Admin"));
-    options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
