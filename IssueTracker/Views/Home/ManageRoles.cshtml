@@ -22,40 +22,41 @@
                 </h3>
             </div>
             <div class="card-body">
-
-                <div class="form-group">
-                    <label>Select 1 or More Users:</label>
-                    <div class="select2-blue">
-                        <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
-                            @if (Model.Any())
-                            {
-                                foreach (var user in Model)
+                <form method="post">
+                    <div class="form-group">
+                        <label>Select 1 or More Users:</label>
+                        <div class="select2-blue">
+                            <select class="select2" name="userList" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                                @if (Model.Any())
                                 {
-                                    <option>@user.userName</option>
+                                    foreach (var user in Model)
+                                    {
+                                        <option value=@user.email>@user.userName</option>
+                                    }
                                 }
-                            }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRole">Select the Role to Assign:</label>
+                        <select name="roleName" id="inputRole" class="form-control custom-select">
+                            <option selected disabled>N/A</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Project Manager">Project Manager</option>
+                            <option value="Submitter">Submitter</option>
+                            <option value="Demo Admin">Demo Admin</option>
+                            <option value="Demo Developer">Demo Developer</option>
+                            <option value="Demo Project Manager">Demo Project Manager</option>
+                            <option value="Demo Submitter">Demo Submitter</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputRole">Select the Role to Assign:</label>
-                    <select id="inputRole" class="form-control custom-select">
-                        <option selected disabled>N/A</option>
-                        <option>Admin</option>
-                        <option>Developer</option>
-                        <option>Project Manager</option>
-                        <option>Submitter</option>
-                        <option>Demo Admin</option>
-                        <option>Demo Developer</option>
-                        <option>Demo Project Manager</option>
-                        <option>Demo Submitter</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <input type="submit" value="Change Role" class="btn btn-success swalDefaultSuccess float-left">
+                    <div class="row">
+                        <div class="col-12">
+                            <input asp-controller="Home" asp-action="ManageRoles" type="submit" value="Change Role" class="btn btn-success swalDefaultSuccess float-left">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -107,7 +108,7 @@
     <script src="../../dist/plugins/sweetalert2/sweetalert2.min.js"></script>
     <script>$(function () {
             $('.select2').select2()
-
+            $('#mySelect2').find(':selected');
         })</script>
     <script>$(function () {
             var Toast = Swal.mixin({

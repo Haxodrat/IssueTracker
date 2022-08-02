@@ -2,8 +2,14 @@
 @using IssueTracker.Areas.Identity.Data;
 @using IssueTracker.Models;
 @using System.Security.Claims;
+@using Microsoft.AspNetCore.Http;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor _context;
+
+@{
+    var user = await UserManager.GetUserAsync(_context.HttpContext.User);
+}
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -116,7 +122,7 @@
         </li>
         <!-- Hello User  -->
         <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.FindFirst("FirstName").Value!</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName!</a>
         </li>
         <!-- Logout -->
         <li class="nav-item d-none d-sm-inline-block">

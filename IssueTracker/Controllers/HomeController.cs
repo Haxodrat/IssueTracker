@@ -28,7 +28,6 @@ public class HomeController : Controller
         return View();
     }
 
-    [Authorize(Roles = "Demo Submitter")]
     public IActionResult Projects()
     {
         return View();
@@ -74,7 +73,7 @@ public class HomeController : Controller
         return View();
     }
 
-
+    [Authorize(Roles = "Admin,Demo Admin")]
     public IActionResult ManageRoles()
     {
         var model = new List<UserRoleViewModel>();
@@ -87,7 +86,8 @@ public class HomeController : Controller
             var userRoleViewModel = new UserRoleViewModel
             {
                 userName = user.FirstName + " " + user.LastName,
-                roleNames = roles
+                roleNames = roles,
+                email = user.Email
             };
 
             model.Add(userRoleViewModel);
@@ -96,7 +96,21 @@ public class HomeController : Controller
         return View(model);
     }
 
-    [Authorize(Roles = "Project Manager")]
+    [HttpPost]
+    public async Task<IActionResult> ManageRoles(List<string> userList, string roleName)
+    {
+        foreach (string userEmail in userList)
+        {
+            ApplicationUser user = await userManager.FindByEmailAsync(userEmail);
+            var roles = await userManager.GetRolesAsync(user);
+            await userManager.RemoveFromRolesAsync(user, roles.ToArray());
+            await userManager.AddToRoleAsync(user, roleName);
+        }
+
+        return RedirectToAction("ManageRoles");
+    }
+
+    [Authorize(Roles = "Admin,Project Manager,Demo Admin,Demo Project Manager")]
     public IActionResult ManageUsers()
     {
         var model = new List<UserRoleViewModel>();

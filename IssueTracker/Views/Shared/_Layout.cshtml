@@ -2,7 +2,11 @@
 @using IssueTracker.Areas.Identity.Data;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor _context;
 
+@{
+    var user = await UserManager.GetUserAsync(_context.HttpContext.User);
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +77,7 @@
                         <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a asp-controller="Home" asp-action="Profile" class="d-block">@(User.FindFirst("FirstName").Value + " " + User.FindFirst("LastName").Value)</a>
+                        <a asp-controller="Home" asp-action="Profile" class="d-block">@(user.FirstName + " " + user.LastName)</a>
                     </div>
                 </div>
 
