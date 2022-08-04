@@ -51,9 +51,14 @@ public class HomeController : Controller
             ProjectLeader = ProjectLeader
         };
 
+        foreach (string userId in Contributors)
+        {
+            project.Users.Add(userManager.FindByIdAsync(userId).Result);
+        }
+
         db.Projects.Add(project);
         db.SaveChanges();
-        //db.Projects.Users.Add(ProjectLeader);
+
         return RedirectToAction("Projects");
     }
 
@@ -142,13 +147,29 @@ public class HomeController : Controller
             var userRoleViewModel = new UserRoleViewModel
             {
                 userName = user.FirstName + " " + user.LastName,
-                roleNames = roles
+                roleNames = roles,
+                email = user.Email
             };
 
             model.Add(userRoleViewModel);
         }
 
         return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult ManageUsers(List<string> Users, List<int> Projects)
+    {
+        foreach (string user in Users)
+        {
+            foreach (int project in Projects)
+            {
+                ProjectModel p = db.Projects.FindAsync(project).Result;
+                p.Users.Add(userManager.FindByEmailAsync(user).Result);
+            }
+        }
+        db.SaveChanges();
+        return RedirectToAction("ManageUsers");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

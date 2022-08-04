@@ -1,6 +1,7 @@
 ﻿@using IssueTracker.Areas.Identity.Data;
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
+@inject IssueTrackerIdentityDbContext db
 @model List<UserRoleViewModel>
 
 @{
@@ -23,39 +24,38 @@
                 Modify User Projects
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <label>Select 1 or More Users:</label>
-                    <div class="select2-blue">
-                        <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
-                            @if (Model.Any())
-                            {
-                                foreach (var user in Model)
+                <form method="post">
+                    <div class="form-group">
+                        <label>Select 1 or More Users:</label>
+                        <div class="select2-blue">
+                            <select class="select2" name="Users" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                                @if (Model.Any())
                                 {
-                                    <option>@user.userName</option>
+                                    foreach (var user in Model)
+                                    {
+                                        <option value=@user.email>@user.userName</option>
+                                    }
                                 }
-                            }
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Select Project(s) to Assign:</label>
-                    <div class="select2-blue">
-                        <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Project" style="width: 100%;">
-                            <option>Sudoku</option>
-                            <option>Calcuvate</option>
-                            <option>Sorting Algorithms</option>
-                            <option>Issue Tracker</option>
-                            <option>Bug Tracker</option>
-                            <option>Tic Tac Toe</option>
-                            <option>Riemann Sum Visualizer</option>
-                        </select>
+                    <div class="form-group">
+                        <label>Select Project(s) to Assign:</label>
+                        <div class="select2-blue">
+                            <select class="select2" name="Projects" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Project" style="width: 100%;">
+                                @foreach (ProjectModel project in db.Projects.ToList())
+                                {
+                                    <option value=@project.Id>@project.Name</option>
+                                }
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <input type="submit" value="Modify User Projects" class="btn btn-success swalDefaultSuccess float-left">
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="submit" value="Modify User Projects" class="btn btn-success swalDefaultSuccess float-left">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="card card-danger">
@@ -63,7 +63,7 @@
                 Remove User
             </div>
             <div class="card-body">
-                <form id="quickForm">
+                <form id="quickForm" method="post">
                     <div class="form-group">
                         <label>Select 1 or More Users:</label>
                         <div class="select2-danger">

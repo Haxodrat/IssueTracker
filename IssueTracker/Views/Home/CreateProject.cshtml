@@ -21,9 +21,11 @@
                 </div>
                 <div class="card-body">
                     <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label for="inputName">Project Name:</label>
                             <input name="Name" type="text" id="inputName" class="form-control">
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Project Description:</label>
@@ -68,7 +70,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <a asp-controller="Home" asp-action="CreateProject" class="btn btn-secondary">Cancel</a>
-                                <input type="submit" value="Create New Project" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                                <input type="submit" value="Create New Project" class="btn btn-success float-right" data-backdrop="static" data-keyboard="false">
                             </div>
                         </div>
                     </form>
@@ -80,24 +82,6 @@
     </div>
 </section>
 <!-- /.content -->
-<div class="modal fade" id="modal-success">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-success">
-            <div class="modal-header">
-                <h4 class="modal-title">Success!</h4>
-            </div>
-            <div class="modal-body">
-                <p>Your project has been created.</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-outline-light">Back to Dashboard</a>
-                <a type="button" asp-controller="Home" asp-action="Projects" class="btn btn-outline-light">Your Projects</a>
-            </div>
-        </div>
-
-    </div>
-
-</div>
 <!-- /.content-wrapper -->
 
 @section Scripts{
