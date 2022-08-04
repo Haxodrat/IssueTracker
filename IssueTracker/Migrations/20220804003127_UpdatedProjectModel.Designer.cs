@@ -3,6 +3,7 @@ using System;
 using IssueTracker.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueTracker.Migrations
 {
     [DbContext(typeof(IssueTrackerIdentityDbContext))]
-    partial class IssueTrackerIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220804003127_UpdatedProjectModel")]
+    partial class UpdatedProjectModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -29,7 +31,7 @@ namespace IssueTracker.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("ApplicationUserProjectModel", (string)null);
+                    b.ToTable("ApplicationUserProjectModel");
                 });
 
             modelBuilder.Entity("IssueTracker.Areas.Identity.Data.ApplicationUser", b =>
@@ -130,7 +132,7 @@ namespace IssueTracker.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

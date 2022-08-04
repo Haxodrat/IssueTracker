@@ -28,6 +28,11 @@ public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
+
+        builder.Entity<ProjectModel>()
+                .HasMany<ApplicationUser>(s => s.Users)
+                .WithMany(c => c.Projects)
+                .UsingEntity(j => j.ToTable("ApplicationUserProjectModel"));
     }
 
 

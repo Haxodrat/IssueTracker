@@ -11,14 +11,14 @@ namespace IssueTracker.Controllers;
 [Authorize]
 public class HomeController : Controller
 {
-    private IssueTrackerIdentityDbContext application;
+    private IssueTrackerIdentityDbContext db;
     private UserManager<ApplicationUser> userManager;
     private RoleManager<IdentityRole> roleManager;
 
-    public HomeController(IssueTrackerIdentityDbContext app, UserManager<ApplicationUser> userManager,
+    public HomeController(IssueTrackerIdentityDbContext db, UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole> roleManager)
     {
-        application = app;
+        this.db = db;
         this.userManager = userManager;
         this.roleManager = roleManager;
     }
@@ -36,6 +36,25 @@ public class HomeController : Controller
     public IActionResult CreateProject()
     {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult CreateProject(String Name, String Description, String Status,
+        String ClientCompany, String ProjectLeader, List<string> Contributors)
+    {
+        var project = new ProjectModel
+        {
+            Name = Name,
+            Description = Description,
+            Status = Status,
+            ClientCompany = ClientCompany,
+            ProjectLeader = ProjectLeader
+        };
+
+        db.Projects.Add(project);
+        db.SaveChanges();
+        //db.Projects.Users.Add(ProjectLeader);
+        return RedirectToAction("Projects");
     }
 
     public IActionResult ProjectDetails()
