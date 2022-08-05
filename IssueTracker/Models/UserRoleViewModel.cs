@@ -7,7 +7,7 @@ namespace IssueTracker.Models
 
         public String roleNames { get; set; }
 
-        public String email { get; set; }
+        public String Id { get; set; }
     }
 }
 

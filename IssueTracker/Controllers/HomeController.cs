@@ -111,7 +111,7 @@ public class HomeController : Controller
             {
                 userName = user.FirstName + " " + user.LastName,
                 roleNames = roles,
-                email = user.Email
+                Id = user.Id
             };
 
             model.Add(userRoleViewModel);
@@ -123,9 +123,9 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> ManageRoles(List<string> userList, string roleName)
     {
-        foreach (string userEmail in userList)
+        foreach (string Id in userList)
         {
-            ApplicationUser user = await userManager.FindByEmailAsync(userEmail);
+            ApplicationUser user = await userManager.FindByIdAsync(Id);
             var roles = await userManager.GetRolesAsync(user);
             await userManager.RemoveFromRolesAsync(user, roles.ToArray());
             await userManager.AddToRoleAsync(user, roleName);
@@ -148,7 +148,7 @@ public class HomeController : Controller
             {
                 userName = user.FirstName + " " + user.LastName,
                 roleNames = roles,
-                email = user.Email
+                Id = user.Id
             };
 
             model.Add(userRoleViewModel);
@@ -165,7 +165,7 @@ public class HomeController : Controller
             foreach (int project in Projects)
             {
                 ProjectModel p = db.Projects.FindAsync(project).Result;
-                p.Users.Add(userManager.FindByEmailAsync(user).Result);
+                p.Users.Add(userManager.FindByIdAsync(user).Result);
             }
         }
         db.SaveChanges();
