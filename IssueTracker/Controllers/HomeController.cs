@@ -55,6 +55,7 @@ public class HomeController : Controller
         {
             project.Users.Add(userManager.FindByIdAsync(userId).Result);
         }
+        project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
 
         db.Projects.Add(project);
         db.SaveChanges();
@@ -89,6 +90,8 @@ public class HomeController : Controller
 
     public IActionResult TicketDetails()
     {
+        
+        
         return View();
     }
 
@@ -137,21 +140,31 @@ public class HomeController : Controller
     [Authorize(Roles = "Admin,Project Manager,Demo Admin,Demo Project Manager")]
     public IActionResult ManageUsers()
     {
-        var model = new List<UserRoleViewModel>();
+        var model = new List<UserRoleProjectViewModel>();
+
 
         foreach (var user in userManager.Users)
         {
             var roleList = userManager.GetRolesAsync(user).Result;
             var roles = string.Join(", ", roleList);
+            var projectList = user.Projects.ToList();
+            List<String> projectNamesList = new List<String>();
 
-            var userRoleViewModel = new UserRoleViewModel
+            foreach (ProjectModel project in projectList)
             {
-                userName = user.FirstName + " " + user.LastName,
+                projectNamesList.Add(project.Name);
+
+            }
+
+            var userRoleProjectViewModel = new UserRoleProjectViewModel
+            {
+                fullName = user.FirstName + " " + user.LastName,
                 roleNames = roles,
-                Id = user.Id
+                Id = user.Id,
+                Projects = string.Join(", ", projectNamesList)
             };
 
-            model.Add(userRoleViewModel);
+            model.Add(userRoleProjectViewModel);
         }
 
         return View(model);
@@ -164,8 +177,11 @@ public class HomeController : Controller
         {
             foreach (int project in Projects)
             {
+                ApplicationUser currentUser = userManager.FindByIdAsync(user).Result;
                 ProjectModel p = db.Projects.FindAsync(project).Result;
-                p.Users.Add(userManager.FindByIdAsync(user).Result);
+                p.Users.Add(currentUser);
+                currentUser.Projects.Add(p);
+
             }
         }
         db.SaveChanges();

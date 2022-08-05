@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
 @inject IssueTrackerIdentityDbContext db
-@model List<UserRoleViewModel>
+@model List<UserRoleProjectViewModel>
 
 @{
     ViewData["Title"] = "Manage Users";
@@ -33,7 +33,7 @@
                                 {
                                     foreach (var user in Model)
                                     {
-                                        <option value=@user.Id>@user.userName</option>
+                                        <option value=@user.Id>@user.fullName</option>
                                     }
                                 }
                             </select>
@@ -72,7 +72,7 @@
                                 {
                                     foreach (var user in Model)
                                     {
-                                        <option>@user.userName</option>
+                                        <option>@user.fullName</option>
                                     }
                                 }
                             </select>
@@ -113,9 +113,9 @@
                             foreach (var user in Model)
                             {
                                 <tr class="odd">
-                                    <td class="dtr-control sorting_1" tabindex="0">@user.userName</td>
+                                    <td class="dtr-control sorting_1" tabindex="0">@user.fullName</td>
                                     <td style="">@user.roleNames</td>
-                                    <td style="">Calcuvate</td>
+                                    <td style="">@user.Projects</td>
                                 </tr>
                             }
                         }
