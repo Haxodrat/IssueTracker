@@ -1,4 +1,8 @@
-﻿@{
+﻿@using IssueTracker.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@inject IssueTrackerIdentityDbContext db
+@inject UserManager<ApplicationUser> UserManager
+@{
     ViewData["Title"] = "Create a Ticket";
 }
 
@@ -16,73 +20,74 @@
                     <h3 class="card-title">Enter Your Ticket Details:</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputName">Ticket Title:</label>
-                        <input type="text" id="inputName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputName">Project Name:</label>
-                        <select id="inputName" class="form-control custom-select">
-                            <option selected disabled>Select a Project</option>
-                            <option>Calcuvate</option>
-                            <option>TicTaceToe</option>
-                            <option>Algorithms</option>
-                            <option>Hospital Management</option>
-                            <option>Music Shop</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Ticket Description:</label>
-                        <textarea id="inputDescription" class="form-control" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPriority">Ticket Priority:</label>
-                        <select id="inputPriority" class="form-control custom-select">
-                            <option selected disabled>Select a Priority</option>
-                            <option>None</option>
-                            <option>Low</option>
-                            <option>Medium</option>
-                            <option>High</option>
-                            <option>Urgent</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStatus">Ticket Status:</label>
-                        <select id="inputStatus" class="form-control custom-select">
-                            <option selected disabled>Select a Status</option>
-                            <option>None</option>
-                            <option>Open</option>
-                            <option>In Progress</option>
-                            <option>Resolved</option>
-                            <option>Additioanl Info Needed</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStatus">Ticket Type:</label>
-                        <select id="inputStatus" class="form-control custom-select">
-                            <option selected disabled>Select a Type</option>
-                            <option>Bugs/Errors</option>
-                            <option>Feature Requests</option>
-                            <option>Other Comments</option>
-                            <option>Styling Comments</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Assigned Developer:</label>
-                        <select id="inputDeveloper" class="form-control custom-select">
-                            <option selected disabled>Select a Developer</option>
-                            <option>Bugs/Errors</option>
-                            <option>Feature Requests</option>
-                            <option>Other Comments</option>
-                            <option>Styling Comments</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <a asp-controller="Home" asp-action="CreateTicket" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Create New Ticket" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="inputName">Ticket Title:</label>
+                            <input name="Title" type="text" id="inputName" class="form-control">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="inputName">Project Name:</label>
+                            <select name="ProjectId" id="inputName" class="form-control custom-select">
+                                <option selected disabled>Select a Project</option>
+                                @foreach (ProjectModel project in db.Projects.ToList())
+                                {
+                                    <option value=@project.Id>@project.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Ticket Description:</label>
+                            <textarea name="Description" id="inputDescription" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPriority">Ticket Priority:</label>
+                            <select name="Priority" id="inputPriority" class="form-control custom-select">
+                                <option selected disabled>Select a Priority</option>
+                                <option value="None">None</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputStatus">Ticket Status:</label>
+                            <select name="Status" id="inputStatus" class="form-control custom-select">
+                                <option selected disabled>Select a Status</option>
+                                <option value="None">None</option>
+                                <option value="Open">Open</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Additional Info Needed">Additional Info Needed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputType">Ticket Type:</label>
+                            <select name="Type" id="inputType" class="form-control custom-select">
+                                <option selected disabled>Select a Type</option>
+                                <option value="Bugs/Errors">Bugs/Errors</option>
+                                <option value="Feature Requests">Feature Requests</option>
+                                <option value="Other Comments">Other Comments</option>
+                                <option value="Styling Comments">Styling Comments</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Assigned Developer:</label>
+                            <select name="Developer" id="inputDeveloper" class="form-control custom-select">
+                                <option selected disabled>Select a Developer</option>
+                                @foreach (ApplicationUser user in UserManager.Users)
+                                {
+                                    <option value=@user.Id>@(user.FirstName + " " + user.LastName)</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a asp-controller="Home" asp-action="CreateTicket" class="btn btn-secondary">Cancel</a>
+                                <input type="submit" value="Create New Ticket" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>

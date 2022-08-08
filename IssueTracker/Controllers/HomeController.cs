@@ -14,13 +14,15 @@ public class HomeController : Controller
     private IssueTrackerIdentityDbContext db;
     private UserManager<ApplicationUser> userManager;
     private RoleManager<IdentityRole> roleManager;
+    private IHttpContextAccessor _context;
 
     public HomeController(IssueTrackerIdentityDbContext db, UserManager<ApplicationUser> userManager,
-        RoleManager<IdentityRole> roleManager)
+        RoleManager<IdentityRole> roleManager, IHttpContextAccessor _context)
     {
         this.db = db;
         this.userManager = userManager;
         this.roleManager = roleManager;
+        this._context = _context;
     }
 
     public IActionResult Index()
@@ -78,12 +80,55 @@ public class HomeController : Controller
 
     public IActionResult Tickets()
     {
-        return View();
+        var currentUser = userManager.GetUserAsync(_context.HttpContext?.User).Result;
+        var model = (from m in db.Tickets
+                     where m.User == currentUser || m.AssignedDeveloper == currentUser.Id
+                     select new TicketModel
+                     {
+                         Name = m.Name,
+                         Description = m.Description,
+                         Priority = m.Priority,
+                         Status = m.Status,
+                         Type = m.Type,
+                         AssignedDeveloper = m.AssignedDeveloper,
+                         User = m.User,
+                         Project = m.Project
+
+                     }).ToList();
+
+        return View(model);
     }
 
     public IActionResult CreateTicket()
     {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult CreateTicket(string Title, int ProjectId, string Description, string Priority, string Status,
+        string Type, string Developer)
+    {
+        var ticket = new TicketModel
+        {
+            Name = Title,
+            Description = Description,
+            Priority = Priority,
+            Status = Status,
+            Type = Type,
+        };
+
+        ticket.User = userManager.GetUserAsync(_context.HttpContext?.User).Result;
+        ticket.AssignedDeveloper = Developer;
+        ticket.Project = db.Projects.FindAsync(ProjectId).Result;
+
+        userManager.FindByIdAsync(Developer).Result.Tickets.Add(ticket);
+        userManager.GetUserAsync(_context.HttpContext?.User).Result.Tickets.Add(ticket);
+        db.Projects.FindAsync(ProjectId).Result?.Tickets.Add(ticket);
+
+        db.Tickets.Add(ticket);
+        db.SaveChanges();
+
+        return RedirectToAction("Tickets");
     }
 
     public IActionResult EditTicket()
@@ -135,6 +180,8 @@ public class HomeController : Controller
             var roles = await userManager.GetRolesAsync(user);
             await userManager.RemoveFromRolesAsync(user, roles.ToArray());
             await userManager.AddToRoleAsync(user, roleName);
+            user.Role = roleName;
+            await userManager.UpdateAsync(user);
         }
 
         return RedirectToAction("ManageRoles");

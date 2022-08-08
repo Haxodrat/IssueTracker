@@ -9,6 +9,7 @@ namespace IssueTracker.Areas.Identity.Data;
 public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<ProjectModel> Projects { get; set; }
+    public DbSet<TicketModel> Tickets { get; set; }
 
     public IssueTrackerIdentityDbContext()
     {
@@ -33,6 +34,15 @@ public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
                 .HasMany<ApplicationUser>(s => s.Users)
                 .WithMany(c => c.Projects)
                 .UsingEntity(j => j.ToTable("ApplicationUserProjectModel"));
+
+        builder.Entity<TicketModel>()
+            .HasOne<ApplicationUser>(t => t.User)
+            .WithMany(a => a.Tickets);
+
+        builder.Entity<TicketModel>()
+            .HasOne<ProjectModel>(u => u.Project)
+            .WithMany(u => u.Tickets);
+
     }
 
 

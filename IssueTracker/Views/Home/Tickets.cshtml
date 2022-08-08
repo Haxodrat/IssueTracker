@@ -1,4 +1,9 @@
-﻿@{
+﻿@model List<TicketModel>
+@using Microsoft.AspNetCore.Identity
+@using IssueTracker.Areas.Identity.Data
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     ViewData["Title"] = "Your Tickets";
 }
 
@@ -34,204 +39,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Issue Tracker</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-info d-flex justify-content-center align-items-center">Low</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">In Progress</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Gray</td>
-                                <td style="">Bug Tracker</td>
-                                <td style="">Lebron James</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-danger d-flex justify-content-center align-items-center">Urgent</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">In Progress</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Glitched page</td>
-                                <td style="">Algorithm Visualizer</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-info d-flex justify-content-center align-items-center">Low</span></td>
-                                <td style="">Bugs/Errors</td>
-                                <td style=""><span class="badge badge-warning d-flex justify-content-center align-items-center">Info Needed</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Great work!</td>
-                                <td style="">Issue Tracker</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-danger d-flex justify-content-center align-items-center">High</span></td>
-                                <td style="">Other Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">Open</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Fix the glitch</td>
-                                <td style="">Sorting Algorithms</td>
-                                <td style="">Connor McDavid</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-warning d-flex justify-content-center align-items-center">Medium</span></td>
-                                <td style="">Bugs/Errors</td>
-                                <td style=""><span class="badge badge-success d-flex justify-content-center align-items-center">Resolved</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Bug Tracker</td>
-                                <td style="">Lebron James</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-info d-flex justify-content-center align-items-center">Low</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">In Progress</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Issue Tracker</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-success d-flex justify-content-center align-items-center">None</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-success d-flex justify-content-center align-items-center">Resolved</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Sorting Algorithms</td>
-                                <td style="">Connor McDavid</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-info d-flex justify-content-center align-items-center">Low</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">Open</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Issue Tracker</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-danger d-flex justify-content-center align-items-center">Urgent</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">Open</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Algorithm Visualizer</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-danger d-flex justify-content-center align-items-center">High</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-warning d-flex justify-content-center align-items-center">Info Needed</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Add more Blue</td>
-                                <td style="">Sudoku</td>
-                                <td style="">Wayne Gretsky</td>
-                                <td class="dtr-control sorting_1" tabindex="0"><span class="badge badge-warning d-flex justify-content-center align-items-center">Medium</span></td>
-                                <td style="">Styling Comments</td>
-                                <td style=""><span class="badge badge-info d-flex justify-content-center align-items-center">In Progress</span></td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
-                                        Edit/Assign
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
+                            @if (Model.Any())
+                            {
+                                foreach (TicketModel ticket in Model)
+                                {
+                                    <tr class="odd">
+                                        <td class="dtr-control sorting_1" tabindex="0">@ticket.Name</td>
+                                        <td style="">@ticket.Project.Name</td>
+                                        <td style="">@(UserManager.FindByIdAsync(ticket.AssignedDeveloper).Result.FirstName + " " + UserManager.FindByIdAsync(ticket.AssignedDeveloper).Result.LastName)</td>
+                                        <td class="dtr-control sorting_1" tabindex="0">@ticket.Priority</td>
+                                        <td style="">@ticket.Type</td>
+                                        <td style="">@ticket.Status</td>
+                                        <td style="">
+                                            <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
+                                                Edit/Assign
+                                            </a>
+                                        </td>
+                                        <td style="">
+                                            <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
+                                                Details
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
                         </tbody>
                         <tfoot>
                             <tr>

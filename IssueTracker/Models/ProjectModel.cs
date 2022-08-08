@@ -10,6 +10,7 @@ namespace IssueTracker.Models
         public ProjectModel()
         {
             this.Users = new HashSet<ApplicationUser>();
+            this.Tickets = new HashSet<TicketModel>();
         }
 
         public int Id { get; set; }
@@ -35,6 +36,8 @@ namespace IssueTracker.Models
         public string? ProjectLeader { get; set; }
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
+
+        public virtual ICollection<TicketModel> Tickets { get; set; }
 
     }
 }
