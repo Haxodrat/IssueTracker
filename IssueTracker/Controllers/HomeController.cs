@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using IssueTracker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using AutoMapper;
 
 namespace IssueTracker.Controllers;
 
@@ -54,8 +55,11 @@ public class HomeController : Controller
         foreach (string userId in Contributors)
         {
             project.Users.Add(userManager.FindByIdAsync(userId).Result);
+            userManager.FindByIdAsync(userId).Result.Projects.Add(project);
         }
+
         project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
+        userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
 
         db.Projects.Add(project);
         db.SaveChanges();
@@ -90,8 +94,8 @@ public class HomeController : Controller
 
     public IActionResult TicketDetails()
     {
-        
-        
+
+
         return View();
     }
 
@@ -126,9 +130,9 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> ManageRoles(List<string> userList, string roleName)
     {
-        foreach (string Id in userList)
+        foreach (string userId in userList)
         {
-            ApplicationUser user = await userManager.FindByIdAsync(Id);
+            ApplicationUser user = await userManager.FindByIdAsync(userId);
             var roles = await userManager.GetRolesAsync(user);
             await userManager.RemoveFromRolesAsync(user, roles.ToArray());
             await userManager.AddToRoleAsync(user, roleName);
@@ -142,26 +146,29 @@ public class HomeController : Controller
     {
         var model = new List<UserRoleProjectViewModel>();
 
-
-        foreach (var user in userManager.Users)
+        foreach (ApplicationUser user in userManager.Users)
         {
             var roleList = userManager.GetRolesAsync(user).Result;
-            var roles = string.Join(", ", roleList);
-            var projectList = user.Projects.ToList();
-            List<String> projectNamesList = new List<String>();
+            var projectList = (from m in db.Projects
+                               from t in m.Users
+                               where t.Id == user.Id
+                               select new
+                               {
+                                   m.Name
+                               }).ToList();
 
-            foreach (ProjectModel project in projectList)
+            List<string> projectNames = new List<string>();
+            for (int i = 0; i < projectList.Count; i++)
             {
-                projectNamesList.Add(project.Name);
-
+                projectNames.Add(projectList[i].Name);
             }
 
             var userRoleProjectViewModel = new UserRoleProjectViewModel
             {
                 fullName = user.FirstName + " " + user.LastName,
-                roleNames = roles,
+                roleNames = string.Join(", ", roleList),
                 Id = user.Id,
-                Projects = string.Join(", ", projectNamesList)
+                Projects = string.Join(", ", projectNames)
             };
 
             model.Add(userRoleProjectViewModel);
@@ -181,10 +188,10 @@ public class HomeController : Controller
                 ProjectModel p = db.Projects.FindAsync(project).Result;
                 p.Users.Add(currentUser);
                 currentUser.Projects.Add(p);
-
             }
         }
         db.SaveChanges();
+
         return RedirectToAction("ManageUsers");
     }
 

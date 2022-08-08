@@ -34,7 +34,7 @@ namespace IssueTracker.Models
         [Display(Name = "Project Leader")]
         public string? ProjectLeader { get; set; }
 
-        public ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
 
     }
 }
