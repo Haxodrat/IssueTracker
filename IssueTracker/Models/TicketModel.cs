@@ -33,6 +33,10 @@ namespace IssueTracker.Models
         [Display(Name = "Assigned Developer")]
         public string? AssignedDeveloper { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateModified { get; set; }
+
         public virtual ApplicationUser User { get; set; }
 
         [Required]
