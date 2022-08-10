@@ -34,7 +34,8 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Ticket Priority: activate to sort column ascending" style="">Ticket Priority</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Ticket Type: activate to sort column ascending" style="">Ticket Type</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Ticket Status: activate to sort column ascending" style="">Ticket Status</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Created: activate to sort column ascending" style="">Created</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date Created: activate to sort column ascending" style="">Date Created</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="">Edit/Assign</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="">Details</th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                         <td class="dtr-control sorting_1" tabindex="0">@ticket.Priority</td>
                                         <td style="">@ticket.Type</td>
                                         <td style="">@ticket.Status</td>
+                                        <td style="">@ticket.DateCreated.ToString("MM-dd-yyyy")</td>
                                         <td style="">
                                             <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditTicket" role="button">
                                                 Edit/Assign
@@ -73,7 +75,8 @@
                                 <th rowspan="1" colspan="1" style="">Ticket Priority</th>
                                 <th rowspan="1" colspan="1">Ticket Type</th>
                                 <th rowspan="1" colspan="1">Ticket Status</th>
-                                <th rowspan="1" colspan="1">Created</th>
+                                <th rowspan="1" colspan="1">Date Created</th>
+                                <th rowspan="1" colspan="1">Edit/Assign</th>
                                 <th rowspan="1" colspan="1" style="">Details</th>
                             </tr>
                         </tfoot>

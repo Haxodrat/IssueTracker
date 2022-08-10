@@ -3,6 +3,7 @@ using System;
 using IssueTracker.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IssueTracker.Migrations
 {
     [DbContext(typeof(IssueTrackerIdentityDbContext))]
-    partial class IssueTrackerIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220810035720_TicketTimes")]
+    partial class TicketTimes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -105,32 +107,6 @@ namespace IssueTracker.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("IssueTracker.Models.CommentModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TicketId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TicketId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("IssueTracker.Models.ProjectModel", b =>
@@ -363,25 +339,6 @@ namespace IssueTracker.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IssueTracker.Models.CommentModel", b =>
-                {
-                    b.HasOne("IssueTracker.Models.TicketModel", "Ticket")
-                        .WithMany("Comments")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IssueTracker.Areas.Identity.Data.ApplicationUser", "User")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ticket");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("IssueTracker.Models.TicketModel", b =>
                 {
                     b.HasOne("IssueTracker.Models.ProjectModel", "Project")
@@ -454,19 +411,12 @@ namespace IssueTracker.Migrations
 
             modelBuilder.Entity("IssueTracker.Areas.Identity.Data.ApplicationUser", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("IssueTracker.Models.ProjectModel", b =>
                 {
                     b.Navigation("Tickets");
-                });
-
-            modelBuilder.Entity("IssueTracker.Models.TicketModel", b =>
-                {
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

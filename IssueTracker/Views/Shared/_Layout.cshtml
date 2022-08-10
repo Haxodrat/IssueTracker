@@ -2,10 +2,18 @@
 @using IssueTracker.Areas.Identity.Data;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@inject IHttpContextAccessor _context;
+@inject IHttpContextAccessor _context
+@inject IssueTrackerIdentityDbContext db
 
 @{
     var user = await UserManager.GetUserAsync(_context.HttpContext.User);
+    var projectNum = (from m in db.Projects
+                      from t in m.Users
+                      where t.Id == user.Id
+                      select new
+                      {
+                      }).Count();
+    var ticketNum = db.Tickets.Where(m => m.User == user || m.AssignedDeveloper == user.Id).Count();
 }
 
 <!DOCTYPE html>
@@ -113,7 +121,7 @@
                                 <p>
                                     My Projects
                                 </p>
-                                <span class="badge badge-info right">9</span>
+                                <span class="badge badge-info right">@projectNum</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -122,7 +130,7 @@
                                 <p>
                                     My Tickets
                                 </p>
-                                <span class="badge badge-info right">6</span>
+                                <span class="badge badge-info right">@ticketNum</span>
                             </a>
                         </li>
                         <li class="nav-item">

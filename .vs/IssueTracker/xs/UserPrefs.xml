@@ -1,13 +1,18 @@
 ﻿<Properties StartupConfiguration="{CC8B3C20-32E9-4344-9A9D-3E7ED620D251}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Views/Home/Tickets.cshtml">
     <Files>
-      <File FileName="IssueTracker/Program.cs" Line="28" Column="31" />
-      <File FileName="IssueTracker/Areas/Identity/Data/IssueTrackerIdentityDbContext.cs" Line="10" Column="1" />
-      <File FileName="IssueTracker/Areas/Identity/Data/ApplicationUser.cs" Line="16" Column="1" />
-      <File FileName="IssueTracker/Data/ApplicationDbContext.cs" Line="1" Column="1" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml" Line="12" Column="12" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml.cs" Line="1" Column="18" />
+      <File FileName="IssueTracker/Views/Shared/_Layout.cshtml" Line="16" Column="1" />
+      <File FileName="IssueTracker/Program.cs" Line="13" Column="1" />
+      <File FileName="IssueTracker/Areas/Identity/Data/IssueTrackerIdentityDbContext.cs" Line="41" Column="39" />
+      <File FileName="IssueTracker/Models/TicketModel.cs" Line="1" Column="1" />
+      <File FileName="IssueTracker/Migrations/20220810201247_SeedComments.cs" Line="34" Column="47" />
+      <File FileName="IssueTracker/Views/Home/Tickets.cshtml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,24 +22,17 @@
               <Node name="Areas" expanded="True">
                 <Node name="Identity" expanded="True">
                   <Node name="Data" expanded="True" />
-                  <Node name="Pages" expanded="True">
-                    <Node name="Account" expanded="True">
-                      <Node name="Login.cshtml" expanded="True" />
-                    </Node>
-                  </Node>
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True">
-                <Node name="Migrations" expanded="True" />
-              </Node>
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True">
+                  <Node name="Tickets.cshtml" selected="True" />
+                </Node>
                 <Node name="Shared" expanded="True" />
               </Node>
-              <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -44,10 +42,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

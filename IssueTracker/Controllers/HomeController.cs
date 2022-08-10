@@ -91,6 +91,8 @@ public class HomeController : Controller
                          Status = m.Status,
                          Type = m.Type,
                          AssignedDeveloper = m.AssignedDeveloper,
+                         DateCreated = m.DateCreated,
+                         DateModified = m.DateModified,
                          User = m.User,
                          Project = m.Project
 
@@ -115,14 +117,13 @@ public class HomeController : Controller
             Priority = Priority,
             Status = Status,
             Type = Type,
+            AssignedDeveloper = Developer,
+            DateCreated = DateTime.Now,
+            DateModified = DateTime.Now
         };
 
         ticket.User = userManager.GetUserAsync(_context.HttpContext?.User).Result;
-        ticket.AssignedDeveloper = Developer;
         ticket.Project = db.Projects.FindAsync(ProjectId).Result;
-
-        userManager.FindByIdAsync(Developer).Result.Tickets.Add(ticket);
-        userManager.GetUserAsync(_context.HttpContext?.User).Result.Tickets.Add(ticket);
         db.Projects.FindAsync(ProjectId).Result?.Tickets.Add(ticket);
 
         db.Tickets.Add(ticket);

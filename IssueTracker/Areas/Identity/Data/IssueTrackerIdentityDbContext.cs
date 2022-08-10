@@ -42,15 +42,15 @@ public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
 
         builder.Entity<TicketModel>()
             .HasOne<ProjectModel>(u => u.Project)
-            .WithMany(t => t.Tickets);
+            .WithMany(u => u.Tickets);
 
         builder.Entity<CommentModel>()
             .HasOne<ApplicationUser>(v => v.User)
-            .WithMany(s => s.Comments);
+            .WithMany(v => v.Comments);
 
         builder.Entity<CommentModel>()
             .HasOne<TicketModel>(w => w.Ticket)
-            .WithMany(x => x.Comments);
+            .WithMany(w => w.Comments);
 
     }
 
