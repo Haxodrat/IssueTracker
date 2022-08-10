@@ -10,6 +10,7 @@ public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<ProjectModel> Projects { get; set; }
     public DbSet<TicketModel> Tickets { get; set; }
+    public DbSet<CommentModel> Comments { get; set; }
 
     public IssueTrackerIdentityDbContext()
     {
@@ -41,7 +42,15 @@ public class IssueTrackerIdentityDbContext : IdentityDbContext<ApplicationUser>
 
         builder.Entity<TicketModel>()
             .HasOne<ProjectModel>(u => u.Project)
-            .WithMany(u => u.Tickets);
+            .WithMany(t => t.Tickets);
+
+        builder.Entity<CommentModel>()
+            .HasOne<ApplicationUser>(v => v.User)
+            .WithMany(s => s.Comments);
+
+        builder.Entity<CommentModel>()
+            .HasOne<TicketModel>(w => w.Ticket)
+            .WithMany(x => x.Comments);
 
     }
 

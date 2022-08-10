@@ -6,6 +6,10 @@ namespace IssueTracker.Models
 {
     public class TicketModel
     {
+        public TicketModel()
+        {
+            this.Comments = new HashSet<CommentModel>();
+        }
 
         public int Id { get; set; }
 
@@ -42,6 +46,8 @@ namespace IssueTracker.Models
         [Required]
         [Display(Name = "Project")]
         public virtual ProjectModel Project { get; set; }
+
+        public virtual ICollection<CommentModel> Comments { get; set; }
 
     }
 }

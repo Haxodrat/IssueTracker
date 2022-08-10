@@ -12,6 +12,7 @@ namespace IssueTracker.Areas.Identity.Data
         {
             this.Projects = new HashSet<ProjectModel>();
             this.Tickets = new HashSet<TicketModel>();
+            this.Comments = new HashSet<CommentModel>();
         }
 
         public String? FirstName { get; set; }
@@ -23,5 +24,7 @@ namespace IssueTracker.Areas.Identity.Data
         public virtual ICollection<ProjectModel> Projects { get; set; }
 
         public virtual ICollection<TicketModel> Tickets { get; set; }
+
+        public virtual ICollection<CommentModel> Comments { get; set; }
     }
 }
