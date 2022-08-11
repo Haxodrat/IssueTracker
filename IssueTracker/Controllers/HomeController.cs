@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using IssueTracker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Collections.Generic;
 
 namespace IssueTracker.Controllers;
 
@@ -27,7 +28,40 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var model = new IndexViewModel
+        {
+            NoPriority = db.Tickets.Where(t => t.Priority == "None").Count(),
+            LowPriority = db.Tickets.Where(t => t.Priority == "Low").Count(),
+            MediumPriority = db.Tickets.Where(t => t.Priority == "Medium").Count(),
+            HighPriority = db.Tickets.Where(t => t.Priority == "High").Count(),
+            UrgentPriority = db.Tickets.Where(t => t.Priority == "Urgent").Count(),
+            NoStatus = db.Tickets.Where(t => t.Status == "None").Count(),
+            OpenStatus = db.Tickets.Where(t => t.Status == "Open").Count(),
+            InProgressStatus = db.Tickets.Where(t => t.Status == "In Progress").Count(),
+            ResolvedStatus = db.Tickets.Where(t => t.Status == "Resolved").Count(),
+            InfoStatus = db.Tickets.Where(t => t.Status == "Additional Info Needed").Count(),
+            Bugs = db.Tickets.Where(t => t.Type == "Bugs/Errors").Count(),
+            Features = db.Tickets.Where(t => t.Type == "Feature Requests").Count(),
+            Other = db.Tickets.Where(t => t.Type == "Other Comments").Count(),
+            Styling = db.Tickets.Where(t => t.Type == "Styling Comments").Count()
+        };
+
+        var dict = new Dictionary<String, int>();
+
+        foreach (ApplicationUser user in userManager.Users)
+        {
+            dict.Add(user.FirstName + " " + user.LastName, db.Tickets.Where(t => t.User == user || t.AssignedDeveloper == user.Id).Count());
+        }
+
+        dict = dict.OrderByDescending(i => i.Value).ToDictionary(i => i.Key, i => i.Value);
+        dict = dict.Take(5).ToDictionary(x => x.Key, x => x.Value);
+
+        foreach (var keyValue in dict)
+        {
+            model.UserTickets.Add(keyValue.Key, keyValue.Value);
+        }
+
+        return View(model);
     }
 
     public IActionResult Projects()

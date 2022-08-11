@@ -1,5 +1,7 @@
-﻿@{
+﻿@model IndexViewModel
+@{
     ViewData["Title"] = "Dashboard";
+    var labelnames = Json.Serialize(@Model.UserTickets.Keys.ToList());
 }
 
 <div class="text-center">
@@ -97,7 +99,6 @@
             //- Ticket Type CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-
             var typeCanvas = $('#donutChart').get(0).getContext('2d')
             var typeData = {
                 labels: [
@@ -108,7 +109,7 @@
                 ],
                 datasets: [
                     {
-                        data: [11, 6, 3, 1],
+                        data: [@Model.Bugs, @Model.Features, @Model.Other, @Model.Styling],
                         backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef'],
                     }
                 ]
@@ -130,16 +131,10 @@
             // Get context with jQuery - using jQuery's .get() method.
             var userCanvas = $('#pieChart').get(0).getContext('2d')
             var userData = {
-                labels: [
-                    'Michael Jordan',
-                    'Lebron James',
-                    'Connor McDavid',
-                    'Wayne Gretsky',
-                    'Babe Ruth',
-                ],
+                labels: @labelnames,
                 datasets: [
                     {
-                        data: [11, 6, 3, 1, 5],
+                        data: [@Model.UserTickets.Values.ElementAt(0), @Model.UserTickets.Values.ElementAt(1), @Model.UserTickets.Values.ElementAt(2), @Model.UserTickets.Values.ElementAt(3), @Model.UserTickets.Values.ElementAt(4)],
                         backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
                     }
                 ]
@@ -173,7 +168,7 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [8, 6, 9, 3, 1],
+                        data: [@Model.NoPriority, @Model.LowPriority, @Model.MediumPriority, @Model.HighPriority, @Model.UrgentPriority],
                         backgroundColor: ['#f6bdc0', '#f69697', '#ee6b6e', '#f94449', '#de0a26'],
                     },
                 ],
@@ -218,7 +213,7 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [6, 11, 7, 2, 4],
+                        data: [@Model.NoStatus, @Model.OpenStatus, @Model.InProgressStatus, @Model.ResolvedStatus, @Model.InfoStatus],
                         backgroundColor: ['#bcd2e8', '#91BAD6', '#73a5c6', '#528aae', '#1e3f66'],
                     },
                 ],
@@ -234,4 +229,3 @@
         })</script>
 
 }
-
