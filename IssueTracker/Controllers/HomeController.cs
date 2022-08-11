@@ -6,6 +6,7 @@ using IssueTracker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Collections.Generic;
+using Microsoft.CodeAnalysis;
 
 namespace IssueTracker.Controllers;
 
@@ -145,6 +146,7 @@ public class HomeController : Controller
                      where m.User == currentUser || m.AssignedDeveloper == currentUser.Id
                      select new TicketModel
                      {
+                         Id = m.Id,
                          Name = m.Name,
                          Description = m.Description,
                          Priority = m.Priority,
@@ -192,9 +194,65 @@ public class HomeController : Controller
         return RedirectToAction("Tickets");
     }
 
-    public IActionResult EditTicket()
+    [HttpGet]
+    public async Task<IActionResult> EditTicket(int id)
     {
-        return View();
+        var ticket = await db.Tickets.FindAsync(id);
+
+        if (ticket == null)
+        {
+            return View("Error");
+        }
+
+        var model = new EditTicketViewModel()
+        {
+            Id = ticket.Id,
+            Name = ticket.Name,
+            Description = ticket.Description,
+            Priority = ticket.Priority,
+            Status = ticket.Status,
+            Type = ticket.Type,
+            AssignedDeveloper = ticket.AssignedDeveloper,
+            DateModified = DateTime.Now
+        };
+
+        var projectList = (from t in db.Tickets
+                           where t.Id == ticket.Id
+                           select t.Project);
+        foreach (ProjectModel project in projectList)
+        {
+            model.ProjectName = project.Name;
+            model.ProjectId = project.Id;
+        }
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditTicket(int Id, string Name, string Description, string Priority, string Status,
+                                                string Type, string AssignedDeveloper)
+    {
+        var ticket = await db.Tickets.FindAsync(Id);
+
+        if (ticket == null)
+        {
+            return View("Error");
+        }
+        else
+        {
+            ticket.Name = Name;
+            ticket.Description = Description;
+            ticket.Priority = Priority;
+            ticket.Status = Status;
+            ticket.Type = Type;
+            ticket.AssignedDeveloper = AssignedDeveloper;
+            ticket.DateModified = DateTime.Now;
+        }
+
+        db.Tickets.Update(ticket);
+        db.SaveChangesAsync();
+
+        return RedirectToAction("Tickets");
     }
 
     public IActionResult TicketDetails()
