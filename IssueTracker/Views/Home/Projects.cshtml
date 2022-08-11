@@ -1,4 +1,6 @@
-﻿@{
+﻿@using IssueTracker.Areas.Identity.Data
+@model List<ProjectViewModel>
+@{
     ViewData["Title"] = "Your Projects";
 }
 
@@ -31,171 +33,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                <td style="">Firefox 1.0</td>
-                                <td style="">Win 98+ / OSX.2+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                <td style="">Firefox 1.5</td>
-                                <td style="">Win 98+ / OSX.2+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                <td style="">Firefox 2.0</td>
-                                <td style="">Win 98+ / OSX.2+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                <td style="">Firefox 3.0</td>
-                                <td style="">Win 2k+ / OSX.3+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Camino 1.0</td>
-                                <td style="">OSX.2+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Camino 1.5</td>
-                                <td style="">OSX.3+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Netscape 7.2</td>
-                                <td style="">Win 95+ / Mac OS 8.6-9.2</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Netscape Browser 8</td>
-                                <td style="">Win 98SE+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Netscape Navigator 9</td>
-                                <td style="">Win 98+ / OSX.2+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Mozilla 1.011</td>
-                                <td style="">Win 95+ / OSX.1+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                <td style="">Mozilla 1.02</td>
-                                <td style="">Win 95+ / OSX.1+</td>
-                                <td style="">
-                                    <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                        Manage Users
-                                    </a>
-                                </td>
-                                <td style="">
-                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
-                                        Details
-                                    </a>
-                                </td>
-                            </tr>
+                            @if (Model.Any())
+                            {
+                                foreach (ProjectViewModel project in Model)
+                                {
+                                    <tr class="odd">
+                                        <td class="dtr-control sorting_1" tabindex="0">@project.Name</td>
+                                        <td style="">@project.Description</td>
+                                        <td style="">@String.Join(", ", project.Users)</td>
+                                        <td style="">
+                                            <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
+                                                Manage Users
+                                            </a>
+                                        </td>
+                                        <td style="">
+                                            <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ProjectDetails" role="button">
+                                                Details
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                         <tfoot>
                             <tr>

@@ -66,7 +66,33 @@ public class HomeController : Controller
 
     public IActionResult Projects()
     {
-        return View();
+        var model = new List<ProjectViewModel>();
+
+        foreach (ProjectModel project in db.Projects)
+        {
+            ProjectViewModel p = new ProjectViewModel
+            {
+                Id = project.Id,
+                Name = project.Name,
+                Description = project.Description,
+            };
+            var users = (from m in db.Projects
+                         where m.Id == project.Id
+                         select m.Users).ToList();
+            foreach (var collection in users)
+            {
+                foreach (ApplicationUser user in collection)
+                {
+                    p.Users.Add(user.FirstName + " " + user.LastName);
+                }
+
+            }
+
+            model.Add(p);
+        }
+
+
+        return View(model);
     }
 
     public IActionResult CreateProject()
