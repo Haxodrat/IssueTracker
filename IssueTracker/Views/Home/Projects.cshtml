@@ -28,7 +28,7 @@
                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Project Name: activate to sort column descending">Project Name</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="">Description</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="User(s): activate to sort column ascending" style="">User(s)</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Manage User(s): activate to sort column ascending" style="">Manage User(s)</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="">Edit</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="">Details</th>
                             </tr>
                         </thead>
@@ -42,8 +42,8 @@
                                         <td style="">@project.Description</td>
                                         <td style="">@String.Join(", ", project.Users)</td>
                                         <td style="">
-                                            <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="ManageUsers" role="button">
-                                                Manage Users
+                                            <a class="btn btn-secondary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="EditProject" asp-route-id="@project.Id" role="button">
+                                                Edit
                                             </a>
                                         </td>
                                         <td style="">
@@ -60,7 +60,7 @@
                                 <th rowspan="1" colspan="1">Project Name</th>
                                 <th rowspan="1" colspan="1" style="">Description</th>
                                 <th rowspan="1" colspan="1" style="">User(s)</th>
-                                <th rowspan="1" colspan="1" style="">Manage User(s)</th>
+                                <th rowspan="1" colspan="1" style="">Edit</th>
                                 <th rowspan="1" colspan="1" style="">Details</th>
                             </tr>
                         </tfoot>

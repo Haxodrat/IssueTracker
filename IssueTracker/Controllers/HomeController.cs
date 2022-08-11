@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
+using System.Net.Sockets;
 
 namespace IssueTracker.Controllers;
 
@@ -129,12 +130,75 @@ public class HomeController : Controller
         return RedirectToAction("Projects");
     }
 
-    public IActionResult ProjectDetails()
+    [HttpGet]
+    public async Task<IActionResult> EditProject(int id)
     {
-        return View();
+        var project = await db.Projects.FindAsync(id);
+
+        if (project == null)
+        {
+            return View("Error");
+        }
+
+        var model = new EditProjectViewModel()
+        {
+            Id = project.Id,
+            Name = project.Name,
+            Description = project.Description,
+            Status = project.Status,
+            ClientCompany = project.ClientCompany,
+            ProjectLeader = project.ProjectLeader
+        };
+
+        var userList = (from p in db.Projects
+                        where p.Id == project.Id
+                        select p.Users).ToList();
+        foreach (var collection in userList)
+        {
+            foreach (ApplicationUser user in collection)
+            {
+                model.Users.Add(user);
+            }
+        }
+
+        foreach (ApplicationUser user in userManager.Users)
+        {
+            if (!model.Users.Contains(user))
+            {
+                model.OtherUsers.Add(user);
+            }
+        }
+
+        return View(model);
     }
 
-    public IActionResult EditProject()
+    [HttpPost]
+    public async Task<IActionResult> EditProject(int Id, string Name, string Description, string Status, string ClientCompany,
+                                                string ProjectLeader, List<string> Contributors)
+    {
+        var project = await db.Projects.FindAsync(Id);
+
+        if (project == null)
+        {
+            return View("Error");
+        }
+        else
+        {
+            project.Name = Name;
+            project.Description = Description;
+            project.Status = Status;
+            project.ClientCompany = ClientCompany;
+            project.ProjectLeader = ProjectLeader;
+        }
+
+        db.Projects.Update(project);
+        db.SaveChangesAsync();
+
+        return RedirectToAction("Projects");
+    }
+
+
+    public IActionResult ProjectDetails()
     {
         return View();
     }
@@ -257,8 +321,6 @@ public class HomeController : Controller
 
     public IActionResult TicketDetails()
     {
-
-
         return View();
     }
 

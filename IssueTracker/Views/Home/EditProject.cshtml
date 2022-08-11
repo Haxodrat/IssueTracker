@@ -1,5 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Edit Project: Calcuvate";
+﻿@using IssueTracker.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> userManager
+@model EditProjectViewModel
+@{
+    ViewData["Title"] = "Edit Project: " + Model.Name;
 }
 
 @section Scripts2
@@ -13,73 +17,83 @@
         <div class="col-md-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">General</h3>
+                    <h3 class="card-title">Edit Your Project</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputName">Project Name</label>
-                        <textarea id="inputName" class="form-control" rows="1"> Calcuvate </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Assigned Tickets</label>
-                        <div class="select2-red">
-                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-red" data-placeholder="Select a Ticket" style="width: 100%;">
-                                <option>Rich</option>
-                                <option>Kimchi</option>
-                                <option>Software Ticket</option>
-                                <option selected>All about Me</option>
-                                <option>Chris sucks</option>
-                                <option>Ryan too</option>
-                                <option>His name is jay lol</option>
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="inputName">Project Name:</label>
+                            <textarea id="inputName" name="Name" class="form-control" rows="1">@Model.Name</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Project Description:</label>
+                            <textarea id="inputDescription" name="Description" class="form-control" rows="3">@Model.Description</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputStatus">Status:</label>
+                            <select id="inputStatus" name="Status" class="form-control custom-select">
+                                <option selected value="@Model.Status">@Model.Status</option>
+                                @if (Model.Status != "In Development")
+                                {
+                                    <option value="In Developement">In Development</option>
+                                }
+                                @if (Model.Status != "On Hold")
+                                {
+                                    <option value="On Hold">On Hold</option>
+                                }
+                                @if (Model.Status != "Revising")
+                                {
+                                    <option value="Revising">Revising</option>
+                                }
+                                @if (Model.Status != "Completed")
+                                {
+                                    <option value="Completed">Completed</option>
+                                }
+                                @if (Model.Status != "Withdrawn")
+                                {
+                                    <option value="Withdrawn">Withdrawn</option>
+                                }
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Project Description</label>
-                        <textarea id="inputDescription" class="form-control" rows="3"> Chris Kim is still the best coder ever.</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStatus">Status</label>
-                        <select id="inputStatus" class="form-control custom-select">
-                            <option disabled>Select one</option>
-                            <option selected>On Hold</option>
-                            <option>Canceled</option>
-                            <option>Success</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Client Company</label>
-                        <textarea id="inputDescription" class="form-control" rows="3"> We need to change this.</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStatus">Project Leader</label>
-                        <select id="inputStatus" class="form-control custom-select">
-                            <option disabled>Select one</option>
-                            <option selected>Chris</option>
-                            <option>Ryan</option>
-                            <option>Jay</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Select 1 or More Users:</label>
-                        <div class="select2-blue">
-                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
-                                <option>Wayne Gretsky</option>
-                                <option>Connor McDavid</option>
-                                <option selected>Michael Jordan</option>
-                                <option>Lebron James</option>
-                                <option>Babe Ruth</option>
-                                <option>Tracy McGrady</option>
-                                <option>Vince Carter</option>
+                        <div class="form-group">
+                            <label for="inputCompany">Client Company:</label>
+                            <textarea id="inputCompany" name="ClientCompany" class="form-control" rows="1">@Model.ClientCompany</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLeader">Project Leader:</label>
+                            <select id="inputLeader" name="ProjectLeader" class="form-control custom-select">
+                                <option selected value="@Model.ProjectLeader">@(userManager.FindByIdAsync(Model.ProjectLeader).Result.FirstName + " " + userManager.FindByIdAsync(Model.ProjectLeader).Result.LastName)</option>
+                                @foreach (ApplicationUser user in userManager.Users)
+                                {
+                                    if (user != userManager.FindByIdAsync(Model.ProjectLeader).Result)
+                                    {
+                                        <option value="@user.Id">@(user.FirstName + " " + user.LastName)</option>
+                                    }
+                                }
                             </select>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <a asp-controller="Home" asp-action="UpdateProject" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Update Project" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                        <div class="form-group">
+                            <label>Select 1 or More Contributors:</label>
+                            <div class="select2-blue">
+                                <select class="select2" name="Contributors" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Contributors" style="width: 100%;">
+                                    @foreach (ApplicationUser user in Model.Users)
+                                    {
+                                        <option value="@user.Id" selected>@(user.FirstName + " " + user.LastName)</option>
+                                    }
+                                    @foreach (ApplicationUser user in Model.OtherUsers)
+                                    {
+                                        <option value="@user.Id">@(user.FirstName + " " + user.LastName)</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a asp-controller="Home" asp-action="Projects" class="btn btn-secondary">Cancel</a>
+                                <input type="submit" asp-route-id="@Model.Id" value="Update Project" class="btn btn-success float-right">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -88,24 +102,6 @@
     </div>
 </section>
 <!-- /.content -->
-<div class="modal fade" id="modal-success">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-success">
-            <div class="modal-header">
-                <h4 class="modal-title">Success!</h4>
-            </div>
-            <div class="modal-body">
-                <p>Your project has been updated.</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-outline-light">Back to Dashboard</a>
-                <a type="button" asp-controller="Home" asp-action="Projects" class="btn btn-outline-light">Your Projects</a>
-            </div>
-        </div>
-
-    </div>
-
-</div>
 <!-- /.content-wrapper -->
 
 @section Scripts{

@@ -39,32 +39,76 @@
                             <label for="inputPriority">Ticket Priority:</label>
                             <select id="inputPriority" name="Priority" class="form-control custom-select">
                                 <option selected value="@Model.Priority">@Model.Priority</option>
-                                <option value="None">None</option>
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
-                                <option value="Urgent">Urgent</option>
+                                @if (Model.Priority != "None")
+                                {
+                                    <option value="None">None</option>
+                                }
+                                @if (Model.Priority != "Low")
+                                {
+                                    <option value="Low">Low</option>
+                                }
+                                @if (Model.Priority != "Medium")
+                                {
+                                    <option value="Medium">Medium</option>
+                                }
+                                @if (Model.Priority != "High")
+                                {
+                                    <option value="High">High</option>
+                                }
+                                @if (Model.Priority != "Urgent")
+                                {
+                                    <option value="Urgent">Urgent</option>
+                                }
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="inputStatus">Status:</label>
                             <select id="inputStatus" name="Status" class="form-control custom-select">
                                 <option selected value="@Model.Status">@Model.Status</option>
-                                <option value="None">None</option>
-                                <option value="Open">Open</option>
-                                <option value="In Progress">In Progress</option>
-                                <option value="Resolved">Resolved</option>
-                                <option value="Additional Info Needed">Additional Info Needed</option>
+                                @if (Model.Status != "None")
+                                {
+                                    <option value="None">None</option>
+                                }
+                                @if (Model.Status != "Open")
+                                {
+                                    <option value="Open">Open</option>
+                                }
+                                @if (Model.Status != "In Progress")
+                                {
+                                    <option value="In Progress">In Progress</option>
+                                }
+                                @if (Model.Status != "Resolved")
+                                {
+                                    <option value="Resolved">Resolved</option>
+                                }
+                                @if (Model.Status != "Additional Info Needed")
+                                {
+                                    <option value="Additional Info Needed">Additional Info Needed</option>
+                                }
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="inputType">Ticket Type:</label>
                             <select id="inputType" name="Type" class="form-control custom-select">
                                 <option selected value="@Model.Type">@Model.Type</option>
-                                <option value="Bugs/Errors">Bugs/Errors</option>
-                                <option value="Feature Requests">Feature Requests</option>
-                                <option value="Other Comments">Other Comments</option>
-                                <option value="Styling Comments">Styling Comments</option>
+                                @if (Model.Type != "Bugs/Errors")
+                                {
+                                    <option value="Bugs/Errors">Bugs/Errors</option>
+                                }
+                                @if (Model.Type != "Feature Requests")
+                                {
+                                    <option value="Feature Requests">Feature Requests</option>
+                                }
+                                @if (Model.Type != "Other Comments")
+                                {
+                                    <option value="Other Comments">Other Comments</option>
+                                }
+                                @if (Model.Type != "Styling Comments")
+                                {
+                                    <option value="Styling Comments">Styling Comments</option>
+                                }
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -73,14 +117,18 @@
                                 <option selected value="@Model.AssignedDeveloper">@(userManager.FindByIdAsync(Model.AssignedDeveloper).Result.FirstName + " " + userManager.FindByIdAsync(Model.AssignedDeveloper).Result.LastName)</option>
                                 @foreach (ApplicationUser user in userManager.Users)
                                 {
-                                    <option value="@user.Id">@(user.FirstName + " " + user.LastName)</option>
+                                    if (user.Id != Model.AssignedDeveloper)
+                                    {
+                                        <option value="@user.Id">@(user.FirstName + " " + user.LastName)</option>
+                                    }
+
                                 }
                             </select>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a asp-controller="Home" asp-action="EditTicket" asp-route-id="@Model.Id" class="btn btn-secondary">Cancel</a>
-                                <input type="submit" value="Update Ticket" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                                <a asp-controller="Home" asp-action="Tickets" class="btn btn-secondary">Cancel</a>
+                                <input type="submit" value="Update Ticket" asp-route-id="@Model.Id" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
                             </div>
                         </div>
                     </form>
