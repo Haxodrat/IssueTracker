@@ -191,8 +191,26 @@ public class HomeController : Controller
             project.ProjectLeader = ProjectLeader;
         }
 
+        db.Entry(project).Collection("Users").Load();
+        foreach (ApplicationUser user in project.Users)
+        {
+            db.Entry(user).Collection("Projects").Load();
+            user.Projects.Remove(project);
+            db.Users.Update(user);
+        }
+        project.Users.Clear();
+
+        foreach (string Contributor in Contributors)
+        {
+            project.Users.Add(await userManager.FindByIdAsync(Contributor));
+            userManager.FindByIdAsync(Contributor).Result.Projects.Add(project);
+        }
+
+        project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
+        userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
+
         db.Projects.Update(project);
-        db.SaveChangesAsync();
+        await db.SaveChangesAsync();
 
         return RedirectToAction("Projects");
     }
