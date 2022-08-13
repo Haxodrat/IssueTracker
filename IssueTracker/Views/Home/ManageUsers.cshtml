@@ -1,6 +1,7 @@
 ﻿@using IssueTracker.Areas.Identity.Data;
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor _context
 @inject IssueTrackerIdentityDbContext db
 @model List<UserRoleProjectViewModel>
 
@@ -58,40 +59,43 @@
                 </form>
             </div>
         </div>
-        <div class="card card-danger">
-            <div class="card-header">
-                Remove User
-            </div>
-            <div class="card-body">
-                <form id="quickForm" method="post">
-                    <div class="form-group">
-                        <label>Select 1 or More Users:</label>
-                        <div class="select2-danger">
-                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-danger" name="inputUsers" id="inputUsers" data-placeholder="Select a User" style="width: 100%;">
-                                @if (Model.Any())
-                                {
-                                    foreach (var user in Model)
+        @if (_context.HttpContext.User.IsInRole("Admin") || _context.HttpContext.User.IsInRole("Demo Admin"))
+        {
+            <div class="card card-danger">
+                <div class="card-header">
+                    Remove User
+                </div>
+                <div class="card-body">
+                    <form id="quickForm" method="post">
+                        <div class="form-group">
+                            <label>Select 1 or More Users:</label>
+                            <div class="select2-danger">
+                                <select class="select2" multiple="multiple" data-dropdown-css-class="select2-danger" name="inputUsers" id="inputUsers" data-placeholder="Select a User" style="width: 100%;">
+                                    @if (Model.Any())
                                     {
-                                        <option value=@user.Id>@user.fullName</option>
+                                        foreach (var user in Model)
+                                        {
+                                            <option value=@user.Id>@user.fullName</option>
+                                        }
                                     }
-                                }
-                            </select>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group mb-0">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                            <label class="custom-control-label" for="exampleCheck1">I understand this will delete all data associated with the user.</label>
+                        <div class="form-group mb-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                                <label class="custom-control-label" for="exampleCheck1">I understand this will delete all data associated with the user.</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <input type="submit" value="Remove User" class="btn btn-danger mt-3 swalDefaultSuccess2 float-left">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="Remove User" class="btn btn-danger mt-3 swalDefaultSuccess2 float-left">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        }
     </div>
     <div class="col-6">
         <div class="card card-info">

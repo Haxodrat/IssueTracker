@@ -1,5 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Sorting Algorithm: Project Details";
+﻿@using Microsoft.AspNetCore.Identity
+@using IssueTracker.Areas.Identity.Data
+@inject UserManager<ApplicationUser> userManager
+@model ProjectModel
+@{
+    ViewData["Title"] = "Project Details: " + Model.Name;
 }
 
 @section Scripts2
@@ -13,28 +17,44 @@
 
 <section class="content">
     <div class="row">
-
         <div class="col-md-12">
-            <div class="card card-info">
+            <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Project Description Card</h3>
+                    <h3 class="card-title">Project Summary</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputName">Project Description </label>
-                        <!--Add a description-->
-                        <p class="text-muted">
-                            The project's description is inserted here.
-                        </p>
-                       
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Project Description:</label>
+                            <p class="text-muted">
+                                @Model.Description
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Client Company:</label>
+                            <p class="text-muted">
+                                @Model.ClientCompany
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Project Leader:</label>
+                            <p class="text-muted">
+                                @(userManager.FindByIdAsync(Model.ProjectLeader).Result.FirstName + " " + userManager.FindByIdAsync(Model.ProjectLeader).Result.LastName)
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Project Status:</label>
+                            <p class="text-muted">
+                                @Model.Status
+                            </p>
+                        </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-        </div>
-
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">Tickets Assigned to this Project</h3>
@@ -42,235 +62,69 @@
                 <div class="card-body">
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
-
                             <div class="col-sm-12">
                                 <table id="example1" class="table table-striped dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead>
                                         <tr>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ticket Name: activate to sort column descending">Ticket Name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Developers: activate to sort column ascending" style="">Developer(s)</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="">Status</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Time Created: activate to sort column ascending" style="">Time Created</th>
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ticket Name: activate to sort column descending">Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Developer: activate to sort column ascending" style="">Developer</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Time Created: activate to sort column ascending" style="">Created</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="">Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd">
-                                            <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                            <td style="">Firefox 1.0</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                12:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                            <td style="">Firefox 1.5</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                1:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                            <td style="">Firefox 2.0</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                2:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                            <td style="">Firefox 3.0</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                3:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Camino 1.0</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                4:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Camino 1.5</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                5:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Netscape 7.2</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                6:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Netscape Browser 8</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                7:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Netscape Navigator 9</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                8:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Mozilla 1.011</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                9:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td class="sorting_1 dtr-control" tabindex="0">Gecko</td>
-                                            <td style="">Mozilla 1.02</td>
-                                            <td style="">In Progress</td>
-                                            <td style="">
-                                                10:00pm
-                                            </td>
-                                            <td style="">
-                                                <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" role="button">
-                                                    Details
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @foreach (TicketModel ticket in Model.Tickets)
+                                        {
+                                            <tr class="odd">
+                                                <td class="dtr-control sorting_1" tabindex="0">@ticket.Name</td>
+                                                <td style="">@(userManager.FindByIdAsync(ticket.AssignedDeveloper).Result.FirstName + " " + userManager.FindByIdAsync(ticket.AssignedDeveloper).Result.LastName)</td>
+                                                <td style="">@ticket.DateCreated.ToString("MM-dd-yyyy")</td>
+                                                <td style="">
+                                                    <a class="btn btn-primary btn-rounded d-flex justify-content-center align-items-center" asp-controller="Home" asp-action="TicketDetails" asp-route-id="@ticket.Id" role="button">
+                                                        Details
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
                                     </tbody>
-                                  
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-info">
+                <div class="card-header">
+                    Personnel Assigned to this Project
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="User: activate to sort column descending">User</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="">Role</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ApplicationUser user in Model.Users)
+                            {
+                                <tr class="odd">
+                                    <td class="dtr-control sorting_1" tabindex="0">@(user.FirstName + " " + user.LastName)</td>
+                                    <td style="">@user.Role</td>
+                                    <td style="">@user.Email</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-</div>
+        </div>
+    </div>
 </section>
 
-<div class="row">
-    <div class="col-12">
-       
-    </div>
-</div>
-
-            <div class="col-12">
-                <div class="card card-info">
-                    <div class="card-header">
-                        Your Personnel
-                    </div>
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
-                            <thead>
-                                <tr>
-                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="User: activate to sort column descending">User</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="">Role</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="odd">
-                                    <td class="dtr-control sorting_1" tabindex="0">Wayne Gretsky</td>
-                                    <td style="">Admin</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                                <tr class="even">
-                                    <td class="dtr-control sorting_1" tabindex="0">Connor McDavid</td>
-                                    <td style="">Developer</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td class="dtr-control sorting_1" tabindex="0">Michael Jordan</td>
-                                    <td style="">Project Manager</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                                <tr class="even">
-                                    <td class="dtr-control sorting_1" tabindex="0">Lebron James</td>
-                                    <td style="">Demo Submitter</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td class="sorting_1 dtr-control" tabindex="0">Babe Ruth</td>
-                                    <td style="">Submitter</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                                <tr class="even">
-                                    <td class="sorting_1 dtr-control" tabindex="0">Tracy McGrady</td>
-                                    <td style="">Demo Admin</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td class="sorting_1 dtr-control" tabindex="0">Vince Carter</td>
-                                    <td style="">Demo Developer</td>
-                                    <td style="">jameskobe@gmail.com</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
 
 @section Scripts
 {
@@ -289,13 +143,6 @@
     <script>$(function () {
             $("#example1").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-                "columnDefs": [{
-                    "targets": [3, 4],
-                    "orderable": false,
-                    "bSort": false
-                }]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });</script>
-
 }

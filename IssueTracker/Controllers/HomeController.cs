@@ -215,10 +215,20 @@ public class HomeController : Controller
         return RedirectToAction("Projects");
     }
 
-
-    public IActionResult ProjectDetails()
+    [HttpGet]
+    public async Task<IActionResult> ProjectDetails(int id)
     {
-        return View();
+        var project = await db.Projects.FindAsync(id);
+
+        if (project == null)
+        {
+            return View("Error");
+        }
+
+        db.Entry(project).Collection("Users").Load();
+        db.Entry(project).Collection("Tickets").Load();
+
+        return View(project);
     }
 
     public IActionResult Tickets()
@@ -337,7 +347,8 @@ public class HomeController : Controller
         return RedirectToAction("Tickets");
     }
 
-    public IActionResult TicketDetails()
+    [HttpGet]
+    public async Task<IActionResult> TicketDetails(int id)
     {
         return View();
     }
