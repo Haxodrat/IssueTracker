@@ -1,5 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Details for Ticket";
+﻿@using Microsoft.AspNetCore.Identity
+@using IssueTracker.Areas.Identity.Data
+@inject UserManager<ApplicationUser> userManager
+@model TicketModel
+@{
+    ViewData["Title"] = "Details for Ticket #" + Model.Id;
 }
 
 <!--Ticket Details Card-->
@@ -11,160 +15,102 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Ticket Details:</h3>
+                    <h3 class="card-title">Ticket #@Model.Id Details:</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputName">Ticket Title:</label>
-                        <p class="text-muted">
-                            Title
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputName">Project Name:</label>
-                        <p class="text-muted">
-                            Algorithms
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Ticket Description:</label>
-                        <p class="text-muted">
-                            Ticket Description inserted here.
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPriority">Ticket Priority:</label>
-                        <p class="text-muted">
-                            Medium
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStatus">Ticket Status:</label>
-                        <p class="text-muted">
-                            In Progress
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStatus">Ticket Type:</label>
-                        <p class="text-muted">
-                            Bugs/Errors
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label>Assigned Developer(s):</label>
-                        <div class="select2-green">
-                            <p class="text-muted">
-                                Gecko
-                            </p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Time Created</label>
-                        <div class="select2-green">
-                            <p class="text-muted">
-                                8:00pm
-                            </p>
-                        </div>
-                    </div>
+                    <label for="inputName">Ticket Title:</label>
+                    <p class="text-muted">
+                        @Model.Name
+                    </p>
+                    <label for="inputDescription">Description:</label>
+                    <p class="text-muted">
+                        @Model.Description
+                    </p>
 
+                    <label for="inputPriority">Priority:</label>
+                    <p class="text-muted">
+                        @Model.Priority
+                    </p>
+                    <label for="inputStatus">Status:</label>
+                    <p class="text-muted">
+                        @Model.Status
+                    </p>
+                    <label for="inputStatus">Type:</label>
+                    <p class="text-muted">
+                        @Model.Type
+                    </p>
+                    <label>Assigned Project:</label>
+                    <p class="text-muted">
+                        @Model.Project.Name
+                    </p>
+                    <label>Assigned Developer:</label>
+                    <p class="text-muted">
+                        @(userManager.FindByIdAsync(Model.AssignedDeveloper).Result.FirstName + " " + userManager.FindByIdAsync(Model.AssignedDeveloper).Result.LastName)
+                    </p>
+                    <label>Date Created:</label>
+                    <p class="text-muted">
+                        @(CommentModel.GetCommentDate(Model.DateCreated) + "  (" + Model.DateCreated.ToString("MM-dd-yyyy hh:mm tt") + ")")
+                    </p>
+                    <label>Date Modified:</label>
+                    <p class="text-muted">
+                        @(CommentModel.GetCommentDate(Model.DateModified) + "  (" + Model.DateModified.ToString("MM-dd-yyyy hh:mm tt") + ")")
+                    </p>
+                    <label>Created By:</label>
+                    <p class="text-muted">
+                        @(Model.User.FirstName + " " + Model.User.LastName)
+                    </p>
                 </div>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
         </div>
+        <div class="col-md-6">
+            <div class="card card-info">
+                <div class="card-header">
+                    Ticket Comments
+                </div>
+                <div class="card-footer card-comments">
+                    @foreach (CommentModel comment in Model.Comments.OrderByDescending(c => c.DateCreated).Take(10).Reverse())
+                    {
+                        <div class="card-comment">
+                            <div class="comment-text">
+                                <span class="username">
+                                    @(comment.User.FirstName + " " + comment.User.LastName)
+                                    <span class="text-muted float-right">@CommentModel.GetCommentDate(comment.DateCreated)</span>
+                                </span>
+                                @comment.Content
+                                <span class="float-right">
+                                    <a asp-controller="Home" asp-action="DeleteComment" asp-route-ticketId="@Model.Id" asp-route-commentId="@comment.Id" class="link-black text-sm">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <form method="post">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="Comment" class="form-control" placeholder="Press enter to post comment">
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-success btn-flat">Send!</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.card -->
     </div>
 </section>
 <!-- /.content -->
 <!-- /.content-wrapper -->
-<!-- Main content -->
-<section class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Comments</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputName">Add your comment:</label>
-                        <input type="text" id="inputName" class="form-control">
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-12">
-                            <a asp-controller="Home" asp-action="CreateComment" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Create New Comment" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-    </div>
-</section>
-<!-- /.content -->
-<div class="modal fade" id="modal-success">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-success">
-            <div class="modal-header">
-                <h4 class="modal-title">Success!</h4>
-            </div>
-            <div class="modal-body">
-                <p>Your comment has been published.</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <a type="button" asp-controller="Home" asp-action="Tickets" class="btn btn-outline-light">Your Tickets</a>
-                <a type="button" asp-controller="Home" asp-action="TicketDetails" class="btn btn-outline-light">Ticket Details</a>
-            </div>
-        </div>
 
-    </div>
 
-</div>
-<div class="col-12">
-    <div class="card card-info">
-        <div class="card-header">
-            Ticket Comments
-        </div>
-        <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
-                <thead>
-                    <tr>
-                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="User: activate to sort column descending">Commenter</th>
-                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="">Comment</th>
-                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="">Time Created</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0">Wayne Gretsky</td>
-                        <td style="">Try to make sure all the test cases run.</td>
-                        <td style="">1:00am</td>
-                    </tr>
-                    <tr class="even">
-                        <td class="dtr-control sorting_1" tabindex="0">Connor McDavid</td>
-                        <td style="">Add more features to project.</td>
-                        <td style="">2:00am</td>
-                    </tr>
-                    <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0">Michael Jordan</td>
-                        <td style="">Ask others what they think about the new files?</td>
-                        <td style="">3:00am</td>
-                    </tr>
-                    <tr class="even">
-                        <td class="dtr-control sorting_1" tabindex="0">Lebron James</td>
-                        <td style="">Did you check the time complexity?</td>
-                        <td style="">4:00am</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
 @section Scripts{
     <script src="../../dist/plugins/select2/js/select2.full.min.js"></script>

@@ -350,7 +350,52 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> TicketDetails(int id)
     {
-        return View();
+        var ticket = await db.Tickets.FindAsync(id);
+
+        if (ticket == null)
+        {
+            return View("Error");
+        }
+
+        db.Entry(ticket).Collection("Comments").Load();
+        db.Entry(ticket).Reference("User").Load();
+        db.Entry(ticket).Reference("Project").Load();
+
+        return View(ticket);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> TicketDetails(int id, String Comment)
+    {
+        var comment = new CommentModel
+        {
+            Content = Comment,
+            User = await userManager.GetUserAsync(_context.HttpContext.User),
+            DateCreated = DateTime.Now,
+            Ticket = await db.Tickets.FindAsync(id)
+        };
+
+        db.Tickets.FindAsync(id).Result.Comments.Add(comment);
+        userManager.GetUserAsync(_context.HttpContext.User).Result.Comments.Add(comment);
+
+        db.SaveChanges();
+
+        return RedirectToAction("TicketDetails", id);
+    }
+
+    public async Task<IActionResult> DeleteComment(int ticketId, int commentId)
+    {
+        var comment = await db.Comments.FindAsync(commentId);
+        db.Entry(comment).Reference("User").Load();
+        db.Entry(comment).Reference("Ticket").Load();
+
+        comment.User.Comments.Remove(comment);
+        comment.Ticket.Comments.Remove(comment);
+        db.Comments.Remove(comment);
+
+        db.SaveChanges();
+
+        return RedirectToAction("TicketDetails", new { id = ticketId });
     }
 
     public IActionResult Profile()
