@@ -28,7 +28,7 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Create a new account.</p>
-                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" enctype="multipart/form-data" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-floating mb-3">
                         <div class="input-group">
@@ -105,6 +105,15 @@
                             </div>
                         </div>
                         <span asp-validation-for="Input.Role" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input asp-for="Input.ProfilePhoto" class="custom-file-input" id="custom-file" />
+                                <label class="custom-file-label" for="custom-file">Choose File</label>
+                            </div>
+                            <span asp-validation-for="Input.ProfilePhoto" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-8">

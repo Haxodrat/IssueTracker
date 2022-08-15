@@ -30,13 +30,15 @@ namespace IssueTracker.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +46,7 @@ namespace IssueTracker.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -117,6 +120,9 @@ namespace IssueTracker.Areas.Identity.Pages.Account
             [Display(Name = "Terms and Conditions")]
             public bool TermsAndConditions { get; set; }
 
+            [Required]
+            [Display(Name = "Profile Photo")]
+            public IFormFile ProfilePhoto { get; set; }
         }
 
 
@@ -137,6 +143,19 @@ namespace IssueTracker.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Role = Input.Role;
+
+                if (Input.ProfilePhoto != null)
+                {
+                    string folder = "profilephotos/";
+                    folder += Guid.NewGuid().ToString() + "_" + Input.ProfilePhoto.FileName;
+
+                    user.ProfilePhoto = folder;
+
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                    await Input.ProfilePhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

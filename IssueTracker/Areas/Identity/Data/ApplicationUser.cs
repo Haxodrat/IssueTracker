@@ -21,6 +21,8 @@ namespace IssueTracker.Areas.Identity.Data
 
         public String? Role { get; set; }
 
+        public string ProfilePhoto { get; set; }
+
         public virtual ICollection<ProjectModel> Projects { get; set; }
 
         public virtual ICollection<TicketModel> Tickets { get; set; }

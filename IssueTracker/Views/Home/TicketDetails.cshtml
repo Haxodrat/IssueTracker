@@ -80,6 +80,7 @@
                     {
                         db.Entry(comment).Reference("User").Load();
                         <div class="card-comment">
+                            <img class="img-circle img-sm" src="/@comment.User.ProfilePhoto" alt="User Image">
                             <div class="comment-text">
                                 <span class="username">
                                     @(comment.User.FirstName + " " + comment.User.LastName)
@@ -102,6 +103,7 @@
                 <div class="card-footer">
                     <form method="post">
                         <div class="input-group input-group-sm">
+                            <img class="img-fluid img-circle img-sm mr-2" src="/@userManager.GetUserAsync(currentUser).Result.ProfilePhoto" alt="Alt Text">
                             <input type="text" name="Comment" class="form-control" placeholder="Press enter to post comment">
                             <span class="input-group-append">
                                 <button type="submit" class="btn btn-success btn-flat">Send!</button>
