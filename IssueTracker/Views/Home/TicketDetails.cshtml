@@ -1,9 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using IssueTracker.Areas.Identity.Data
 @inject UserManager<ApplicationUser> userManager
+@inject IssueTrackerIdentityDbContext db
+@inject IHttpContextAccessor _context
 @model TicketModel
 @{
     ViewData["Title"] = "Details for Ticket #" + Model.Id;
+    var currentUser = _context.HttpContext.User;
 }
 
 <!--Ticket Details Card-->
@@ -75,6 +78,7 @@
                 <div class="card-footer card-comments">
                     @foreach (CommentModel comment in Model.Comments.OrderByDescending(c => c.DateCreated).Take(10).Reverse())
                     {
+                        db.Entry(comment).Reference("User").Load();
                         <div class="card-comment">
                             <div class="comment-text">
                                 <span class="username">
@@ -82,11 +86,15 @@
                                     <span class="text-muted float-right">@CommentModel.GetCommentDate(comment.DateCreated)</span>
                                 </span>
                                 @comment.Content
-                                <span class="float-right">
-                                    <a asp-controller="Home" asp-action="DeleteComment" asp-route-ticketId="@Model.Id" asp-route-commentId="@comment.Id" class="link-black text-sm">
-                                        <i class="far fa-trash-alt"></i>
-                                    </a>
-                                </span>
+                                @if (comment.User == userManager.GetUserAsync(currentUser).Result)
+                                {
+                                    <span class="float-right">
+                                        <a asp-controller="Home" asp-action="DeleteComment" asp-route-ticketId="@Model.Id" asp-route-commentId="@comment.Id" class="link-black text-sm">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </span>
+                                }
+
                             </div>
                         </div>
                     }
