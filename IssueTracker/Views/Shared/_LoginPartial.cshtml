@@ -11,6 +11,24 @@
 @{
     var user = await UserManager.GetUserAsync(_context.HttpContext.User);
     var comments = db.Comments.Where(c => c.User != user).ToList();
+
+    var projects = new List<ProjectModel>();
+    foreach (ProjectModel project in db.Projects)
+    {
+        if (user.LastLogin < project.DateCreated)
+        {
+            projects.Add(project);
+        }
+    }
+
+    var tickets = new List<TicketModel>();
+    foreach (TicketModel ticket in db.Tickets)
+    {
+        if (user.LastLogin < ticket.DateCreated)
+        {
+            tickets.Add(ticket);
+        }
+    }
 }
 
 <ul class="navbar-nav">
@@ -41,7 +59,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">@comments.Count</span>
+                <span class="badge badge-danger navbar-badge">@Math.Min(3, comments.Count)</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 @foreach (CommentModel comment in comments.OrderByDescending(c => c.DateCreated).Take(3))
@@ -80,27 +98,26 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
+                <span class="badge badge-warning navbar-badge">@(tickets.Count + projects.Count)</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <span class="dropdown-item dropdown-header">@(tickets.Count + projects.Count) Notifications</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                @if (projects.Any())
+                {
+                    <a asp-controller="Home" asp-action="Projects" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> @projects.Count new project(s)
+                        <span class="float-right text-muted text-sm">@CommentModel.GetCommentDate(projects.OrderByDescending(p => p.DateCreated).First().DateCreated)</span>
+                    </a>
+                }
+                @if (tickets.Any())
+                {
+                    <div class="dropdown-divider"></div>
+                    <a asp-controller="Home" asp-action="Tickets" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> @tickets.Count new ticket(s)
+                        <span class="float-right text-muted text-sm">@CommentModel.GetCommentDate(tickets.OrderByDescending(t => t.DateCreated).First().DateCreated)</span>
+                    </a>
+                }
             </div>
         </li>
         <!-- Hello User  -->

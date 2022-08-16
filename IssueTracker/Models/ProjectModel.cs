@@ -39,6 +39,8 @@ namespace IssueTracker.Models
 
         public virtual ICollection<TicketModel> Tickets { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
     }
 }
 

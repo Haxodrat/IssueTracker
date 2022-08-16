@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Identity
 @inject IssueTrackerIdentityDbContext db
 @inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor _context
 @{
     ViewData["Title"] = "Create a Ticket";
 }
@@ -29,7 +30,7 @@
                             <label for="inputName">Project Name:</label>
                             <select name="ProjectId" id="inputName" class="form-control custom-select">
                                 <option selected disabled>Select a Project</option>
-                                @foreach (ProjectModel project in db.Projects.ToList())
+                                @foreach (ProjectModel project in db.Projects.Where(p => p.Users.Contains(UserManager.GetUserAsync(_context.HttpContext.User).Result)))
                                 {
                                     <option value=@project.Id>@project.Name</option>
                                 }

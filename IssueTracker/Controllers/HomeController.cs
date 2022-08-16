@@ -30,6 +30,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        userManager.GetUserAsync(_context.HttpContext.User).Result.LastLogin = DateTime.Now;
+        db.Users.Update(userManager.GetUserAsync(_context.HttpContext.User).Result);
+        db.SaveChanges();
+
         var model = new IndexViewModel
         {
             NoPriority = db.Tickets.Where(t => t.Priority == "None").Count(),
@@ -70,7 +74,7 @@ public class HomeController : Controller
     {
         var model = new List<ProjectViewModel>();
 
-        foreach (ProjectModel project in db.Projects)
+        foreach (ProjectModel project in db.Projects.Where(p => p.Users.Contains(userManager.GetUserAsync(_context.HttpContext.User).Result)))
         {
             ProjectViewModel p = new ProjectViewModel
             {
@@ -112,7 +116,8 @@ public class HomeController : Controller
             Description = Description,
             Status = Status,
             ClientCompany = ClientCompany,
-            ProjectLeader = ProjectLeader
+            ProjectLeader = ProjectLeader,
+            DateCreated = DateTime.Now
         };
 
         foreach (string userId in Contributors)
@@ -494,6 +499,40 @@ public class HomeController : Controller
         db.SaveChanges();
 
         return RedirectToAction("ManageUsers");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteUser(List<string> Users)
+    {
+        foreach (string userId in Users)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+            }
+
+            foreach (ProjectModel project in db.Projects.Where(p => p.ProjectLeader == user.Id).ToList())
+            {
+                project.ProjectLeader = userManager.GetUserAsync(_context.HttpContext?.User).Result.Id;
+            }
+            foreach (TicketModel ticket in db.Tickets.Where(t => t.AssignedDeveloper == user.Id).ToList())
+            {
+                ticket.AssignedDeveloper = userManager.GetUserAsync(_context.HttpContext?.User).Result.Id;
+            }
+
+            var result = await userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+            }
+
+            await db.SaveChangesAsync();
+        }
+
+        return RedirectToAction("ManageUsers");
+
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

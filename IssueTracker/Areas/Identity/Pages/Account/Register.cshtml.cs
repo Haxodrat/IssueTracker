@@ -143,6 +143,7 @@ namespace IssueTracker.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Role = Input.Role;
+                user.LastLogin = DateTime.Now;
 
                 if (Input.ProfilePhoto != null)
                 {

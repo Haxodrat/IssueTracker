@@ -28,5 +28,7 @@ namespace IssueTracker.Areas.Identity.Data
         public virtual ICollection<TicketModel> Tickets { get; set; }
 
         public virtual ICollection<CommentModel> Comments { get; set; }
+
+        public DateTime LastLogin { get; set; }
     }
 }
