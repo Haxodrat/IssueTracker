@@ -22,9 +22,18 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="app.db" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\profilephotos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\profilephotos\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

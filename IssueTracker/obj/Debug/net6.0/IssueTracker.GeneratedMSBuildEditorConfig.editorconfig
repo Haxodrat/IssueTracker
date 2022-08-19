@@ -159,6 +159,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9fVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/Areas/Identity/Pages/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/Areas/Identity/Pages/Email.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/Areas/Identity/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -201,10 +209,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/Views/Home/ManageUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9NYW5hZ2VVc2Vycy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/Views/Home/Profile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/Views/Home/ProjectDetails.cshtml]

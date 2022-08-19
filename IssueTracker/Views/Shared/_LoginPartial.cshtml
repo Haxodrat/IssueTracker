@@ -11,6 +11,7 @@
 @{
     var user = await UserManager.GetUserAsync(_context.HttpContext.User);
     var comments = db.Comments.Where(c => c.User != user).ToList();
+    comments = comments.Where(c => (DateTime.Now - c.DateCreated).Days <= 1).ToList();
 
     var projects = new List<ProjectModel>();
     foreach (ProjectModel project in db.Projects)
@@ -62,6 +63,8 @@
                 <span class="badge badge-danger navbar-badge">@Math.Min(3, comments.Count)</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item dropdown-header">@Math.Min(3, comments.Count) Comments</span>
+                <div class="dropdown-divider"></div>
                 @foreach (CommentModel comment in comments.OrderByDescending(c => c.DateCreated).Take(3))
                 {
                     db.Entry(comment).Reference("Ticket").Load();

@@ -129,6 +129,11 @@ public class HomeController : Controller
         project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
         userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
 
+        if (!project.Users.Contains(userManager.GetUserAsync(_context.HttpContext.User).Result))
+        {
+            project.Users.Add(userManager.GetUserAsync(_context.HttpContext.User).Result);
+        }
+
         db.Projects.Add(project);
         db.SaveChanges();
 
@@ -401,11 +406,6 @@ public class HomeController : Controller
         db.SaveChanges();
 
         return RedirectToAction("TicketDetails", new { id = ticketId });
-    }
-
-    public IActionResult Profile()
-    {
-        return View();
     }
 
     [Authorize(Roles = "Admin,Demo Admin")]

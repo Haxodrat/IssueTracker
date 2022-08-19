@@ -11,7 +11,7 @@
     "IssueTracker": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:18296",
+      "applicationUrl": "http://localhost:10129",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

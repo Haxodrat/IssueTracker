@@ -1,18 +1,14 @@
 ﻿<Properties StartupConfiguration="{CC8B3C20-32E9-4344-9A9D-3E7ED620D251}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Views/Home/Tickets.cshtml">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml">
     <Files>
-      <File FileName="IssueTracker/Views/Shared/_Layout.cshtml" Line="16" Column="1" />
-      <File FileName="IssueTracker/Program.cs" Line="13" Column="1" />
-      <File FileName="IssueTracker/Areas/Identity/Data/IssueTrackerIdentityDbContext.cs" Line="41" Column="39" />
-      <File FileName="IssueTracker/Models/TicketModel.cs" Line="1" Column="1" />
-      <File FileName="IssueTracker/Migrations/20220810201247_SeedComments.cs" Line="34" Column="47" />
-      <File FileName="IssueTracker/Views/Home/Tickets.cshtml" Line="1" Column="1" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Manage/Index.cshtml" Line="31" Column="15" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Manage/Email.cshtml" Line="1" Column="6" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Manage/_Layout.cshtml" Line="17" Column="1" />
+      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml" Line="73" Column="88" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,26 +17,35 @@
             <Node name="IssueTracker" expanded="True">
               <Node name="Areas" expanded="True">
                 <Node name="Identity" expanded="True">
-                  <Node name="Data" expanded="True" />
+                  <Node name="Pages" expanded="True">
+                    <Node name="Account" expanded="True">
+                      <Node name="Manage" expanded="True">
+                        <Node name="Email.cshtml" expanded="True" />
+                        <Node name="SetPassword.cshtml" expanded="True" />
+                      </Node>
+                      <Node name="ForgotPassword.cshtml" expanded="True" />
+                      <Node name="Login.cshtml" selected="True" />
+                      <Node name="Register.cshtml" expanded="True" />
+                      <Node name="RegisterConfirmation.cshtml" expanded="True" />
+                      <Node name="ResetPassword.cshtml" expanded="True" />
+                      <Node name="ResetPasswordConfirmation.cshtml" expanded="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="Migrations" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True">
-                  <Node name="Tickets.cshtml" selected="True" />
-                </Node>
-                <Node name="Shared" expanded="True" />
-              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
+        <State>
+          <Value>projects</Value>
+          <Value>tickets</Value>
+          <Value>user</Value>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

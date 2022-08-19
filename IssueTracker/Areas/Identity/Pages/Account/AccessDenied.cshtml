@@ -4,7 +4,17 @@
     ViewData["Title"] = "Access denied";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+
+<section class="content">
+    <div class="error-page">
+        <h2 class="headline text-danger">505</h2>
+        <div class="error-content">
+            <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! You do not have access to this page.</h3>
+            <p>
+                Talk to an admin to receive appropriate permissions.
+                Meanwhile, you may <a asp-controller="Home" asp-action="Index">return to dashboard</a>.
+            </p>
+        </div>
+    </div>
+
+</section>

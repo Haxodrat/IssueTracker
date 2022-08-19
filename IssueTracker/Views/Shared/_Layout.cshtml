@@ -85,7 +85,7 @@
                         <img src="/@user.ProfilePhoto" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a asp-controller="Home" asp-action="Profile" class="d-block">@(user.FirstName + " " + user.LastName)</a>
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="d-block">@(user.FirstName + " " + user.LastName)</a>
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="Profile" class="nav-link">
+                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     User Profile
