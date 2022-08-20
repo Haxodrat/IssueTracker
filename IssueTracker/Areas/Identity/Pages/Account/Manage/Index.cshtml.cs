@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using IssueTracker.Areas.Identity.Data;
+using System.Web;
+using System.IO;
 
 namespace IssueTracker.Areas.Identity.Pages.Account.Manage
 {
@@ -17,13 +19,19 @@ namespace IssueTracker.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IssueTrackerIdentityDbContext _db;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IWebHostEnvironment webHostEnvironment,
+            IssueTrackerIdentityDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _webHostEnvironment = webHostEnvironment;
+            _db = db;
         }
 
         /// <summary>
@@ -61,6 +69,9 @@ namespace IssueTracker.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+
+            [Display(Name = "Profile Photo")]
+            public IFormFile ProfilePhoto { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -114,6 +125,24 @@ namespace IssueTracker.Areas.Identity.Pages.Account.Manage
             if (Input.LastName != lastName)
             {
                 user.LastName = Input.LastName;
+            }
+            if (Input.ProfilePhoto != null)
+            {
+                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, user.ProfilePhoto);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+
+                string folder = "profilephotos/";
+                folder += Guid.NewGuid().ToString() + "_" + Input.ProfilePhoto.FileName;
+
+                user.ProfilePhoto = folder;
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                await Input.ProfilePhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+                await _userManager.UpdateAsync(user);
             }
 
             await _userManager.UpdateAsync(user);

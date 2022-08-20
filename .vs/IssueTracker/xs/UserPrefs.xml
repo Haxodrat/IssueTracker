@@ -1,7 +1,6 @@
 ﻿<Properties StartupConfiguration="{CC8B3C20-32E9-4344-9A9D-3E7ED620D251}|Default">
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml">
     <Files>

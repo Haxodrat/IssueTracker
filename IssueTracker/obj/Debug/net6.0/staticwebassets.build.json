@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1PP32+Jwqr//FfVYuXGSRwXFlEXWL/eE0ncVJIMiAug=",
+  "Hash": "/a9KZvrStq7YdsmbsVHHbjrv7fXSyRMp/KL9DePxHA8=",
   "Source": "IssueTracker",
   "BasePath": "_content/IssueTracker",
   "Mode": "Default",
@@ -37009,12 +37009,12 @@
       "OriginalItemSpec": "wwwroot/profilephotos/0aea692d-4399-4c95-9d90-253ce2616676_Screen Shot 2022-08-14 at 7.40.45 PM.png"
     },
     {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/0ce6c94c-ce2a-4152-823b-42d650883118_Screen Shot 2022-08-15 at 4.17.00 PM.png",
+      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/11982117-3902-40a0-a46a-5d8adcef2d3b_Screen Shot 2022-08-20 at 10.29.12 AM.png",
       "SourceId": "IssueTracker",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
       "BasePath": "_content/IssueTracker",
-      "RelativePath": "profilephotos/0ce6c94c-ce2a-4152-823b-42d650883118_Screen Shot 2022-08-15 at 4.17.00 PM.png",
+      "RelativePath": "profilephotos/11982117-3902-40a0-a46a-5d8adcef2d3b_Screen Shot 2022-08-20 at 10.29.12 AM.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -37023,24 +37023,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/profilephotos/0ce6c94c-ce2a-4152-823b-42d650883118_Screen Shot 2022-08-15 at 4.17.00 PM.png"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/0fb70d55-1d81-4364-a0b8-3b9eed23cc6d_Screen Shot 2022-08-15 at 4.17.00 PM.png",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "profilephotos/0fb70d55-1d81-4364-a0b8-3b9eed23cc6d_Screen Shot 2022-08-15 at 4.17.00 PM.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/profilephotos/0fb70d55-1d81-4364-a0b8-3b9eed23cc6d_Screen Shot 2022-08-15 at 4.17.00 PM.png"
+      "OriginalItemSpec": "wwwroot/profilephotos/11982117-3902-40a0-a46a-5d8adcef2d3b_Screen Shot 2022-08-20 at 10.29.12 AM.png"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/16acd121-10d5-408c-bad1-efb701bba39f_Screen Shot 2022-08-18 at 1.51.46 PM.png",
@@ -37075,40 +37058,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/profilephotos/4a985e8a-5e7d-4fbb-a98b-58fa69dde7ae_Screen Shot 2022-08-14 at 7.50.11 PM.png"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/4c3c6ceb-a6e0-4bce-87eb-2aaadb4012d0_Screen Shot 2022-08-15 at 4.17.00 PM.png",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "profilephotos/4c3c6ceb-a6e0-4bce-87eb-2aaadb4012d0_Screen Shot 2022-08-15 at 4.17.00 PM.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/profilephotos/4c3c6ceb-a6e0-4bce-87eb-2aaadb4012d0_Screen Shot 2022-08-15 at 4.17.00 PM.png"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/4e0bb0e4-63b9-4e9b-9faa-a7070a955dfb_Screen Shot 2022-08-15 at 4.17.00 PM.png",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "profilephotos/4e0bb0e4-63b9-4e9b-9faa-a7070a955dfb_Screen Shot 2022-08-15 at 4.17.00 PM.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/profilephotos/4e0bb0e4-63b9-4e9b-9faa-a7070a955dfb_Screen Shot 2022-08-15 at 4.17.00 PM.png"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/5a0fa522-3cc0-4246-acc4-6a08bda20d9e_Screen Shot 2022-08-14 at 7.54.35 PM.png",
@@ -37160,23 +37109,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/profilephotos/8db5e814-4a39-48e7-b7fe-79738af4fbab_Screen Shot 2022-08-14 at 7.55.06 PM.png"
-    },
-    {
-      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/90bf1a77-ebee-4000-bb9f-6c95ce104b55_Screen Shot 2022-08-14 at 7.54.20 PM.png",
-      "SourceId": "IssueTracker",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
-      "BasePath": "_content/IssueTracker",
-      "RelativePath": "profilephotos/90bf1a77-ebee-4000-bb9f-6c95ce104b55_Screen Shot 2022-08-14 at 7.54.20 PM.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/profilephotos/90bf1a77-ebee-4000-bb9f-6c95ce104b55_Screen Shot 2022-08-14 at 7.54.20 PM.png"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/d9d1b887-ba23-4c27-8794-ef5a794aa96f_Screen Shot 2022-08-14 at 7.50.28 PM.png",

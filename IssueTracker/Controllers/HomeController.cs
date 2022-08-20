@@ -535,6 +535,12 @@ public class HomeController : Controller
 
     }
 
+    [AllowAnonymous]
+    public IActionResult MissingPage()
+    {
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
