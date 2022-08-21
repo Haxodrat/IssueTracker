@@ -117,13 +117,17 @@
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" asp-for="Input.TermsAndConditions" id="agreeTerms" name="terms" value="agree" class="custom-control-input" required>
-                                <label for="agreeTerms">
-                                    I agree to the <a href="#">terms</a>
-                                </label>
+                            <div class="form-floating mb-3">
+                                <div class="input-group">
+                                    <div class="icheck-primary">
+                                        <input type="checkbox" asp-for="Input.TermsAndConditions" id="agreeTerms" name="terms" value="agree" class="custom-control-input" required>
+                                        <label for="agreeTerms">
+                                            I agree to the <a href="#">terms</a>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="Input.TermsAndConditions" class="text-danger"></span>
+                                </div>
                             </div>
-                            <span asp-validation-for="Input.TermsAndConditions" class="text-danger"></span>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
@@ -154,6 +158,8 @@
     <script src="../../dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="../../dist/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../../dist/plugins/jquery-validation/additional-methods.min.js"></script>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
