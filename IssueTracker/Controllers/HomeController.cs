@@ -110,34 +110,39 @@ public class HomeController : Controller
     public IActionResult CreateProject(String Name, String Description, String Status,
         String ClientCompany, String ProjectLeader, List<string> Contributors)
     {
-        var project = new ProjectModel
+        if (ModelState.IsValid)
         {
-            Name = Name,
-            Description = Description,
-            Status = Status,
-            ClientCompany = ClientCompany,
-            ProjectLeader = ProjectLeader,
-            DateCreated = DateTime.Now
-        };
+            var project = new ProjectModel
+            {
+                Name = Name,
+                Description = Description,
+                Status = Status,
+                ClientCompany = ClientCompany,
+                ProjectLeader = ProjectLeader,
+                DateCreated = DateTime.Now
+            };
 
-        foreach (string userId in Contributors)
-        {
-            project.Users.Add(userManager.FindByIdAsync(userId).Result);
-            userManager.FindByIdAsync(userId).Result.Projects.Add(project);
+            foreach (string userId in Contributors)
+            {
+                project.Users.Add(userManager.FindByIdAsync(userId).Result);
+                userManager.FindByIdAsync(userId).Result.Projects.Add(project);
+            }
+
+            project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
+            userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
+
+            if (!project.Users.Contains(userManager.GetUserAsync(_context.HttpContext.User).Result))
+            {
+                project.Users.Add(userManager.GetUserAsync(_context.HttpContext.User).Result);
+            }
+
+            db.Projects.Add(project);
+            db.SaveChanges();
+
+            return RedirectToAction("Projects");
         }
 
-        project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
-        userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
-
-        if (!project.Users.Contains(userManager.GetUserAsync(_context.HttpContext.User).Result))
-        {
-            project.Users.Add(userManager.GetUserAsync(_context.HttpContext.User).Result);
-        }
-
-        db.Projects.Add(project);
-        db.SaveChanges();
-
-        return RedirectToAction("Projects");
+        return View();
     }
 
     [HttpGet]
@@ -186,43 +191,49 @@ public class HomeController : Controller
     public async Task<IActionResult> EditProject(int Id, string Name, string Description, string Status, string ClientCompany,
                                                 string ProjectLeader, List<string> Contributors)
     {
-        var project = await db.Projects.FindAsync(Id);
-
-        if (project == null)
+        if (ModelState.IsValid)
         {
-            return View("Error");
+            var project = await db.Projects.FindAsync(Id);
+
+            if (project == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                project.Name = Name;
+                project.Description = Description;
+                project.Status = Status;
+                project.ClientCompany = ClientCompany;
+                project.ProjectLeader = ProjectLeader;
+            }
+
+            db.Entry(project).Collection("Users").Load();
+            foreach (ApplicationUser user in project.Users)
+            {
+                db.Entry(user).Collection("Projects").Load();
+                user.Projects.Remove(project);
+                db.Users.Update(user);
+            }
+            project.Users.Clear();
+
+            foreach (string Contributor in Contributors)
+            {
+                project.Users.Add(await userManager.FindByIdAsync(Contributor));
+                userManager.FindByIdAsync(Contributor).Result.Projects.Add(project);
+            }
+
+            project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
+            userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
+
+            db.Projects.Update(project);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Projects");
+
         }
-        else
-        {
-            project.Name = Name;
-            project.Description = Description;
-            project.Status = Status;
-            project.ClientCompany = ClientCompany;
-            project.ProjectLeader = ProjectLeader;
-        }
 
-        db.Entry(project).Collection("Users").Load();
-        foreach (ApplicationUser user in project.Users)
-        {
-            db.Entry(user).Collection("Projects").Load();
-            user.Projects.Remove(project);
-            db.Users.Update(user);
-        }
-        project.Users.Clear();
-
-        foreach (string Contributor in Contributors)
-        {
-            project.Users.Add(await userManager.FindByIdAsync(Contributor));
-            userManager.FindByIdAsync(Contributor).Result.Projects.Add(project);
-        }
-
-        project.Users.Add(userManager.FindByIdAsync(ProjectLeader).Result);
-        userManager.FindByIdAsync(ProjectLeader).Result.Projects.Add(project);
-
-        db.Projects.Update(project);
-        await db.SaveChangesAsync();
-
-        return RedirectToAction("Projects");
+        return RedirectToAction("EditProject", Id);
     }
 
     [HttpGet]
@@ -274,26 +285,30 @@ public class HomeController : Controller
     public IActionResult CreateTicket(string Title, int ProjectId, string Description, string Priority, string Status,
         string Type, string Developer)
     {
-        var ticket = new TicketModel
+        if (ModelState.IsValid)
         {
-            Name = Title,
-            Description = Description,
-            Priority = Priority,
-            Status = Status,
-            Type = Type,
-            AssignedDeveloper = Developer,
-            DateCreated = DateTime.Now,
-            DateModified = DateTime.Now
-        };
+            var ticket = new TicketModel
+            {
+                Name = Title,
+                Description = Description,
+                Priority = Priority,
+                Status = Status,
+                Type = Type,
+                AssignedDeveloper = Developer,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now
+            };
 
-        ticket.User = userManager.GetUserAsync(_context.HttpContext?.User).Result;
-        ticket.Project = db.Projects.FindAsync(ProjectId).Result;
-        db.Projects.FindAsync(ProjectId).Result?.Tickets.Add(ticket);
+            ticket.User = userManager.GetUserAsync(_context.HttpContext?.User).Result;
+            ticket.Project = db.Projects.FindAsync(ProjectId).Result;
+            db.Projects.FindAsync(ProjectId).Result?.Tickets.Add(ticket);
 
-        db.Tickets.Add(ticket);
-        db.SaveChanges();
+            db.Tickets.Add(ticket);
+            db.SaveChanges();
 
-        return RedirectToAction("Tickets");
+            return RedirectToAction("Tickets");
+        }
+        return View();
     }
 
     [HttpGet]
@@ -334,27 +349,34 @@ public class HomeController : Controller
     public async Task<IActionResult> EditTicket(int Id, string Name, string Description, string Priority, string Status,
                                                 string Type, string AssignedDeveloper)
     {
-        var ticket = await db.Tickets.FindAsync(Id);
-
-        if (ticket == null)
+        if (ModelState.IsValid)
         {
-            return View("Error");
-        }
-        else
-        {
-            ticket.Name = Name;
-            ticket.Description = Description;
-            ticket.Priority = Priority;
-            ticket.Status = Status;
-            ticket.Type = Type;
-            ticket.AssignedDeveloper = AssignedDeveloper;
-            ticket.DateModified = DateTime.Now;
+
+            var ticket = await db.Tickets.FindAsync(Id);
+
+            if (ticket == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                ticket.Name = Name;
+                ticket.Description = Description;
+                ticket.Priority = Priority;
+                ticket.Status = Status;
+                ticket.Type = Type;
+                ticket.AssignedDeveloper = AssignedDeveloper;
+                ticket.DateModified = DateTime.Now;
+            }
+
+            db.Tickets.Update(ticket);
+            db.SaveChangesAsync();
+
+            return RedirectToAction("Tickets");
+
         }
 
-        db.Tickets.Update(ticket);
-        db.SaveChangesAsync();
-
-        return RedirectToAction("Tickets");
+        return View();
     }
 
     [HttpGet]
@@ -377,18 +399,25 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> TicketDetails(int id, String Comment)
     {
-        var comment = new CommentModel
+        if (ModelState.IsValid)
         {
-            Content = Comment,
-            User = await userManager.GetUserAsync(_context.HttpContext.User),
-            DateCreated = DateTime.Now,
-            Ticket = await db.Tickets.FindAsync(id)
-        };
 
-        db.Tickets.FindAsync(id).Result.Comments.Add(comment);
-        userManager.GetUserAsync(_context.HttpContext.User).Result.Comments.Add(comment);
+            var comment = new CommentModel
+            {
+                Content = Comment,
+                User = await userManager.GetUserAsync(_context.HttpContext.User),
+                DateCreated = DateTime.Now,
+                Ticket = await db.Tickets.FindAsync(id)
+            };
 
-        db.SaveChanges();
+            db.Tickets.FindAsync(id).Result.Comments.Add(comment);
+            userManager.GetUserAsync(_context.HttpContext.User).Result.Comments.Add(comment);
+
+            db.SaveChanges();
+
+            return RedirectToAction("TicketDetails", id);
+
+        }
 
         return RedirectToAction("TicketDetails", id);
     }
@@ -434,17 +463,23 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> ManageRoles(List<string> userList, string roleName)
     {
-        foreach (string userId in userList)
+        if (ModelState.IsValid)
         {
-            ApplicationUser user = await userManager.FindByIdAsync(userId);
-            var roles = await userManager.GetRolesAsync(user);
-            await userManager.RemoveFromRolesAsync(user, roles.ToArray());
-            await userManager.AddToRoleAsync(user, roleName);
-            user.Role = roleName;
-            await userManager.UpdateAsync(user);
+
+            foreach (string userId in userList)
+            {
+                ApplicationUser user = await userManager.FindByIdAsync(userId);
+                var roles = await userManager.GetRolesAsync(user);
+                await userManager.RemoveFromRolesAsync(user, roles.ToArray());
+                await userManager.AddToRoleAsync(user, roleName);
+                user.Role = roleName;
+                await userManager.UpdateAsync(user);
+            }
+
+            return RedirectToAction("ManageRoles");
         }
 
-        return RedirectToAction("ManageRoles");
+        return View();
     }
 
     [Authorize(Roles = "Admin,Project Manager,Demo Admin,Demo Project Manager")]
@@ -486,53 +521,100 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult ManageUsers(List<string> Users, List<int> Projects)
     {
-        foreach (string user in Users)
+        if (ModelState.IsValid)
         {
-            foreach (int project in Projects)
+            foreach (string user in Users)
             {
-                ApplicationUser currentUser = userManager.FindByIdAsync(user).Result;
-                ProjectModel p = db.Projects.FindAsync(project).Result;
-                p.Users.Add(currentUser);
-                currentUser.Projects.Add(p);
-            }
-        }
-        db.SaveChanges();
+                foreach (int project in Projects)
+                {
+                    ApplicationUser currentUser = userManager.FindByIdAsync(user).Result;
+                    db.Entry(currentUser).Collection("Projects").Load();
+                    ProjectModel p = db.Projects.FindAsync(project).Result;
+                    if (!currentUser.Projects.Contains(p))
+                    {
+                        p.Users.Add(currentUser);
+                        currentUser.Projects.Add(p);
 
-        return RedirectToAction("ManageUsers");
+                    }
+                }
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("ManageUsers");
+
+        }
+
+        return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> DeleteUser(List<string> Users)
     {
-        foreach (string userId in Users)
+        if (ModelState.IsValid)
         {
-            var user = await userManager.FindByIdAsync(userId);
-            if (user == null)
+            foreach (string userId in Users)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                var user = await userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                }
+
+                foreach (ProjectModel project in db.Projects.Where(p => p.ProjectLeader == user.Id).ToList())
+                {
+                    project.ProjectLeader = userManager.GetUserAsync(_context.HttpContext?.User).Result.Id;
+                }
+                foreach (TicketModel ticket in db.Tickets.Where(t => t.AssignedDeveloper == user.Id).ToList())
+                {
+                    ticket.AssignedDeveloper = userManager.GetUserAsync(_context.HttpContext?.User).Result.Id;
+                }
+
+                var result = await userManager.DeleteAsync(user);
+
+                if (!result.Succeeded)
+                {
+                    throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                }
+
+                await db.SaveChangesAsync();
             }
 
-            foreach (ProjectModel project in db.Projects.Where(p => p.ProjectLeader == user.Id).ToList())
-            {
-                project.ProjectLeader = userManager.GetUserAsync(_context.HttpContext?.User).Result.Id;
-            }
-            foreach (TicketModel ticket in db.Tickets.Where(t => t.AssignedDeveloper == user.Id).ToList())
-            {
-                ticket.AssignedDeveloper = userManager.GetUserAsync(_context.HttpContext?.User).Result.Id;
-            }
+            return RedirectToAction("ManageUsers");
 
-            var result = await userManager.DeleteAsync(user);
-
-            if (!result.Succeeded)
-            {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
-            }
-
-            await db.SaveChangesAsync();
         }
 
         return RedirectToAction("ManageUsers");
 
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteProject(int Id)
+    {
+        if (ModelState.IsValid)
+        {
+            ProjectModel project = await db.Projects.FindAsync(Id);
+            db.Projects.Remove(project);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Projects");
+        }
+
+        return RedirectToAction("ProjectDetails", Id);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteTicket(int Id)
+    {
+        if (ModelState.IsValid)
+        {
+            TicketModel ticket = await db.Tickets.FindAsync(Id);
+            db.Tickets.Remove(ticket);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Tickets");
+        }
+
+        return RedirectToAction("TicketDetails", Id);
     }
 
     [AllowAnonymous]

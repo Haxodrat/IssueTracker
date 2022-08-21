@@ -26,12 +26,16 @@
                     <div class="form-group">
                         <label>Select 1 or More Users:</label>
                         <div class="select2-blue">
-                            <select class="select2" name="userList" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                            <select class="select2" name="userList" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;" required>
                                 @if (Model.Any())
                                 {
                                     foreach (var user in Model)
                                     {
-                                        <option value=@user.Id>@user.userName</option>
+                                        if (user.roleNames != "Admin")
+                                        {
+                                            <option value=@user.Id>@user.userName</option>
+                                        }
+
                                     }
                                 }
                             </select>
@@ -39,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputRole">Select the Role to Assign:</label>
-                        <select name="roleName" id="inputRole" class="form-control custom-select">
+                        <select name="roleName" id="inputRole" class="form-control custom-select" required>
                             <option selected disabled>N/A</option>
                             <option value="Admin">Admin</option>
                             <option value="Developer">Developer</option>
@@ -53,7 +57,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input asp-controller="Home" asp-action="ManageRoles" type="submit" value="Change Role" class="btn btn-success swalDefaultSuccess float-left">
+                            <input asp-controller="Home" asp-action="ManageRoles" type="submit" value="Change Role" class="btn btn-success float-left">
                         </div>
                     </div>
                 </form>
@@ -110,21 +114,6 @@
             $('.select2').select2()
             $('#mySelect2').find(':selected');
         })</script>
-    <script>$(function () {
-            var Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('.swalDefaultSuccess').click(function () {
-                Toast.fire({
-                    icon: 'success',
-                    title: "Ryan Tobin's role has been changed to Admin."
-                })
-            });
-        });</script>
     <script src="../../dist/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../../dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../dist/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

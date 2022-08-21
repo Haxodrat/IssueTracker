@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/a9KZvrStq7YdsmbsVHHbjrv7fXSyRMp/KL9DePxHA8=",
+  "Hash": "PlPvGU4sxYTevmx2p59y75dGiPxb3Ub5z6BRXSJPKzs=",
   "Source": "IssueTracker",
   "BasePath": "_content/IssueTracker",
   "Mode": "Default",
@@ -36990,6 +36990,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/profilephotos/.DS_Store"
+    },
+    {
+      "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/0a9691c2-2bce-402b-8d6c-066ecd694d92_4a985e8a-5e7d-4fbb-a98b-58fa69dde7ae_Screen Shot 2022-08-14 at 7.50.11 PM.png",
+      "SourceId": "IssueTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/",
+      "BasePath": "_content/IssueTracker",
+      "RelativePath": "profilephotos/0a9691c2-2bce-402b-8d6c-066ecd694d92_4a985e8a-5e7d-4fbb-a98b-58fa69dde7ae_Screen Shot 2022-08-14 at 7.50.11 PM.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/profilephotos/0a9691c2-2bce-402b-8d6c-066ecd694d92_4a985e8a-5e7d-4fbb-a98b-58fa69dde7ae_Screen Shot 2022-08-14 at 7.50.11 PM.png"
     },
     {
       "Identity": "/Users/ryantobin/Documents/GitHub/IssueTracker/IssueTracker/wwwroot/profilephotos/0aea692d-4399-4c95-9d90-253ce2616676_Screen Shot 2022-08-14 at 7.40.45 PM.png",

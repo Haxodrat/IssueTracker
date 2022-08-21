@@ -23,19 +23,21 @@
                     <form method="post">
                         <div class="form-group">
                             <label for="inputName">Project Name:</label>
-                            <textarea id="inputName" name="Name" class="form-control" rows="1">@Model.Name</textarea>
+                            <textarea id="Name" name="Name" class="form-control" rows="1" required minlength="5">@Model.Name</textarea>
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Project Description:</label>
-                            <textarea id="inputDescription" name="Description" class="form-control" rows="3">@Model.Description</textarea>
+                            <textarea id="inputDescription" name="Description" class="form-control" rows="3" required minlength="5" maxlength="100">@Model.Description</textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputStatus">Status:</label>
-                            <select id="inputStatus" name="Status" class="form-control custom-select">
+                            <select asp-for="Status" id="inputStatus" name="Status" class="form-control custom-select" required>
                                 <option selected value="@Model.Status">@Model.Status</option>
                                 @if (Model.Status != "In Development")
                                 {
-                                    <option value="In Developement">In Development</option>
+                                    <option value="In Development">In Development</option>
                                 }
                                 @if (Model.Status != "On Hold")
                                 {
@@ -54,14 +56,16 @@
                                     <option value="Withdrawn">Withdrawn</option>
                                 }
                             </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputCompany">Client Company:</label>
-                            <textarea id="inputCompany" name="ClientCompany" class="form-control" rows="1">@Model.ClientCompany</textarea>
+                            <textarea asp-for="ClientCompany" id="inputCompany" name="ClientCompany" class="form-control" rows="1" required minlength="5">@Model.ClientCompany</textarea>
+                            <span asp-validation-for="ClientCompany" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputLeader">Project Leader:</label>
-                            <select id="inputLeader" name="ProjectLeader" class="form-control custom-select">
+                            <select asp-for="ProjectLeader" id="inputLeader" name="ProjectLeader" class="form-control custom-select" required>
                                 <option selected value="@Model.ProjectLeader">@(userManager.FindByIdAsync(Model.ProjectLeader).Result.FirstName + " " + userManager.FindByIdAsync(Model.ProjectLeader).Result.LastName)</option>
                                 @foreach (ApplicationUser user in userManager.Users)
                                 {
@@ -71,11 +75,12 @@
                                     }
                                 }
                             </select>
+                            <span asp-validation-for="ProjectLeader" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Select 1 or More Contributors:</label>
                             <div class="select2-blue">
-                                <select class="select2" name="Contributors" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Contributors" style="width: 100%;">
+                                <select asp-for="Users" class="select2" name="Contributors" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Contributors" style="width: 100%;" required>
                                     @foreach (ApplicationUser user in Model.Users)
                                     {
                                         <option value="@user.Id" selected>@(user.FirstName + " " + user.LastName)</option>
@@ -86,6 +91,7 @@
                                     }
                                 </select>
                             </div>
+                            <span asp-validation-for="Users" class="text-danger"></span>
                         </div>
                         <div class="row">
                             <div class="col-12">

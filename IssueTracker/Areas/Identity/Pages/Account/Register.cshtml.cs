@@ -117,6 +117,7 @@ namespace IssueTracker.Areas.Identity.Pages.Account
             [Display(Name = "Role")]
             public string Role { get; set; }
 
+            [Required]
             [Display(Name = "Terms and Conditions")]
             public bool TermsAndConditions { get; set; }
 

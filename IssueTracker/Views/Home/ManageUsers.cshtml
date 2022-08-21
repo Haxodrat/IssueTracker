@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label>Select 1 or More Users:</label>
                         <div class="select2-blue">
-                            <select class="select2" name="Users" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;">
+                            <select class="select2" name="Users" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a User" style="width: 100%;" required>
                                 @if (Model.Any())
                                 {
                                     foreach (var user in Model)
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label>Select Project(s) to Assign:</label>
                         <div class="select2-blue">
-                            <select class="select2" name="Projects" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Project" style="width: 100%;">
+                            <select class="select2" name="Projects" multiple="multiple" data-dropdown-css-class="select2-blue" data-placeholder="Select a Project" style="width: 100%;" required>
                                 @foreach (ProjectModel project in db.Projects.ToList())
                                 {
                                     <option value=@project.Id>@project.Name</option>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input type="submit" value="Modify User Projects" class="btn btn-success swalDefaultSuccess float-left">
+                            <input type="submit" value="Modify User Projects" class="btn btn-success float-left">
                         </div>
                     </div>
                 </form>
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label>Select 1 or More Users:</label>
                             <div class="select2-danger">
-                                <select class="select2" name="Users" multiple="multiple" data-dropdown-css-class="select2-danger" name="inputUsers" id="inputUsers" data-placeholder="Select a User" style="width: 100%;">
+                                <select class="select2" name="Users" multiple="multiple" data-dropdown-css-class="select2-danger" name="inputUsers" id="inputUsers" data-placeholder="Select a User" style="width: 100%;" required>
                                     @if (Model.Any())
                                     {
                                         foreach (var user in Model)
@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group mb-0">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                                <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1" required>
                                 <label class="custom-control-label" for="exampleCheck1">I understand this will delete all data associated with the user.</label>
                             </div>
                         </div>
@@ -148,27 +148,6 @@
             $('.select2').select2()
 
         })</script>
-    <script>$(function () {
-            var Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('.swalDefaultSuccess').click(function () {
-                Toast.fire({
-                    icon: 'success',
-                    title: "User projects have been modified."
-                })
-            });
-            $('.swalDefaultSuccess2').click(function () {
-                Toast.fire({
-                    icon: 'success',
-                    title: "Ryan Tobin has been removed from the database."
-                })
-            });
-        });</script>
     <script src="../../dist/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../../dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../dist/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -180,64 +159,4 @@
         });</script>
     <script src="../../dist/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="../../dist/plugins/jquery-validation/additional-methods.min.js"></script>
-    @*<script>$(function () {
-            $.validator.setDefaults({
-                submitHandler: function () {
-                }
-            });
-            $('#quickForm').validate({
-                rules: {
-                    inputUsers: {
-                        required: true,
-                    },
-                    terms: {
-                        required: true
-                    },
-                },
-                messages: {
-                    inputUsers: {
-                        required: "Please select a user.",
-                    },
-                    terms: "Please accept our terms."
-                },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-            $('#quickForm2').validate({
-                rules: {
-                    inputUsers: {
-                        required: true,
-                    },
-                    inputProjects: {
-                        required: true
-                    },
-                },
-                messages: {
-                    inputUsers: {
-                        required: "Please select a user.",
-                    },
-                    terms: "Please select a project."
-                },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-        });</script>*@
 }

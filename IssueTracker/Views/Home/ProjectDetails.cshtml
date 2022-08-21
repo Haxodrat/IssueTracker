@@ -93,6 +93,11 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <form method="post" action="@Url.Action("DeleteProject", "Home", new { Id = Model.Id })">
+                    <input type="submit" value="Delete Project" class="btn btn-danger ml-2">
+                </form>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="card card-info">

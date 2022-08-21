@@ -1,13 +1,9 @@
 ﻿<Properties StartupConfiguration="{CC8B3C20-32E9-4344-9A9D-3E7ED620D251}|Default">
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IssueTracker/Controllers/HomeController.cs">
     <Files>
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Manage/Index.cshtml" Line="31" Column="15" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Manage/Email.cshtml" Line="1" Column="6" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Manage/_Layout.cshtml" Line="17" Column="1" />
-      <File FileName="IssueTracker/Areas/Identity/Pages/Account/Login.cshtml" Line="73" Column="88" />
+      <File FileName="IssueTracker/Controllers/HomeController.cs" Line="520" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,32 +15,37 @@
                   <Node name="Pages" expanded="True">
                     <Node name="Account" expanded="True">
                       <Node name="Manage" expanded="True">
-                        <Node name="Email.cshtml" expanded="True" />
-                        <Node name="SetPassword.cshtml" expanded="True" />
+                        <Node name="Index.cshtml" expanded="True" />
                       </Node>
-                      <Node name="ForgotPassword.cshtml" expanded="True" />
-                      <Node name="Login.cshtml" selected="True" />
                       <Node name="Register.cshtml" expanded="True" />
-                      <Node name="RegisterConfirmation.cshtml" expanded="True" />
-                      <Node name="ResetPassword.cshtml" expanded="True" />
-                      <Node name="ResetPasswordConfirmation.cshtml" expanded="True" />
                     </Node>
                   </Node>
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="profilephotos" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State>
-          <Value>projects</Value>
-          <Value>tickets</Value>
-          <Value>user</Value>
+          <Value>filePath</Value>
+          <Value>System.IO.File.Exists(filePath)</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.IssueTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
 </Properties>

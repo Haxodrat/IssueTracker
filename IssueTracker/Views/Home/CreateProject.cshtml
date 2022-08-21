@@ -21,55 +21,59 @@
                 </div>
                 <div class="card-body">
                     <form method="post">
-                        <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
                             <label for="inputName">Project Name:</label>
-                            <input name="Name" type="text" id="inputName" class="form-control">
+                            <input name="Name" type="text" id="inputName" class="form-control" minlength="5" required>
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Project Description:</label>
-                            <textarea name="Description" id="inputDescription" class="form-control" rows="4"></textarea>
+                            <textarea name="Description" id="inputDescription" class="form-control" rows="4" minlength="5" maxlength="100" required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputStatus">Status:</label>
-                            <select name="Status" id="inputStatus" class="form-control custom-select">
+                            <select name="Status" id="inputStatus" class="form-control custom-select" required>
                                 <option selected disabled>Select a Status</option>
-                                <option value="In Developement">In Development</option>
+                                <option value="In Development">In Development</option>
                                 <option value="On Hold">On Hold</option>
                                 <option value="Revising">Revising</option>
                                 <option value="Completed">Completed</option>
                                 <option value="Withdrawn">Withdrawn</option>
                             </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Client Company:</label>
-                            <input name="ClientCompany" type="text" id="inputClientCompany" class="form-control">
+                            <input name="ClientCompany" type="text" id="inputClientCompany" class="form-control" required>
+                            <span asp-validation-for="ClientCompany" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputLeader">Project Leader:</label>
-                            <select name="ProjectLeader" id="inputLeader" class="form-control custom-select">
+                            <select name="ProjectLeader" id="inputLeader" class="form-control custom-select" required>
                                 <option selected disabled>Select a Project Leader</option>
                                 @foreach (ApplicationUser user in UserManager.Users)
                                 {
                                     <option value=@user.Id>@(user.FirstName + " " + user.LastName)</option>
                                 }
                             </select>
+                            <span asp-validation-for="ProjectLeader" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label>Select 1 or More Contributors:</label>
+                            <label>Select Contributors:</label>
                             <div class="select2-green">
-                                <select name="Contributors" class="select2" multiple="multiple" data-dropdown-css-class="select2-green" data-placeholder="Select a User" style="width: 100%;">
+                                <select name="Contributors" class="select2" multiple="multiple" data-dropdown-css-class="select2-green" data-placeholder="Select a User" style="width: 100%;" required>
                                     @foreach (ApplicationUser user in UserManager.Users)
                                     {
                                         <option value=@user.Id>@(user.FirstName + " " + user.LastName)</option>
                                     }
                                 </select>
                             </div>
+                            <span asp-validation-for="Users" class="text-danger"></span>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a asp-controller="Home" asp-action="CreateProject" class="btn btn-secondary">Cancel</a>
+                                <a asp-controller="Home" asp-action="Projects" class="btn btn-secondary">Cancel</a>
                                 <input type="submit" value="Create New Project" class="btn btn-success float-right" data-backdrop="static" data-keyboard="false">
                             </div>
                         </div>

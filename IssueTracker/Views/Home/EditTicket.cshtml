@@ -23,21 +23,21 @@
                     <form method="post">
                         <div class="form-group">
                             <label for="inputName">Ticket Title:</label>
-                            <textarea id="inputName" name="Name" class="form-control" rows="1">@Model.Name</textarea>
+                            <textarea id="inputName" name="Name" class="form-control" rows="1" required minlength="5">@Model.Name</textarea>
                         </div>
                         <div class="form-group">
                             <label for="inputProject">Project Name:</label>
-                            <select id="inputProject" name="ProjectName" class="form-control custom-select">
+                            <select id="inputProject" name="ProjectName" class="form-control custom-select" required>
                                 <option value="@Model.ProjectId" selected>@Model.ProjectName</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Ticket Description:</label>
-                            <textarea id="inputDescription" name="Description" class="form-control" rows="3">@Model.Description</textarea>
+                            <textarea id="inputDescription" name="Description" class="form-control" rows="3" required minlength="5" maxlength="100">@Model.Description</textarea>
                         </div>
                         <div class="form-group">
                             <label for="inputPriority">Ticket Priority:</label>
-                            <select id="inputPriority" name="Priority" class="form-control custom-select">
+                            <select id="inputPriority" name="Priority" class="form-control custom-select" required>
                                 <option selected value="@Model.Priority">@Model.Priority</option>
                                 @if (Model.Priority != "None")
                                 {
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputStatus">Status:</label>
-                            <select id="inputStatus" name="Status" class="form-control custom-select">
+                            <select id="inputStatus" name="Status" class="form-control custom-select" required>
                                 <option selected value="@Model.Status">@Model.Status</option>
                                 @if (Model.Status != "None")
                                 {
@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputType">Ticket Type:</label>
-                            <select id="inputType" name="Type" class="form-control custom-select">
+                            <select id="inputType" name="Type" class="form-control custom-select" required>
                                 <option selected value="@Model.Type">@Model.Type</option>
                                 @if (Model.Type != "Bugs/Errors")
                                 {
@@ -113,7 +113,7 @@
                         </div>
                         <div class="form-group">
                             <label>Assigned Developer:</label>
-                            <select class="form-control custom-select" name="AssignedDeveloper">
+                            <select class="form-control custom-select" name="AssignedDeveloper" required>
                                 <option selected value="@Model.AssignedDeveloper">@(userManager.FindByIdAsync(Model.AssignedDeveloper).Result.FirstName + " " + userManager.FindByIdAsync(Model.AssignedDeveloper).Result.LastName)</option>
                                 @foreach (ApplicationUser user in userManager.Users)
                                 {
@@ -128,7 +128,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <a asp-controller="Home" asp-action="Tickets" class="btn btn-secondary">Cancel</a>
-                                <input type="submit" value="Update Ticket" asp-route-id="@Model.Id" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                                <input type="submit" value="Update Ticket" asp-route-id="@Model.Id" class="btn btn-success float-right">
                             </div>
                         </div>
                     </form>
@@ -140,24 +140,6 @@
     </div>
 </section>
 <!-- /.content -->
-<div class="modal fade" id="modal-success">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-success">
-            <div class="modal-header">
-                <h4 class="modal-title">Success!</h4>
-            </div>
-            <div class="modal-body">
-                <p>Your ticket has been updated.</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-outline-light">Back to Dashboard</a>
-                <a type="button" asp-controller="Home" asp-action="Tickets" class="btn btn-outline-light">Your Tickets</a>
-            </div>
-        </div>
-
-    </div>
-
-</div>
 <!-- /.content-wrapper -->
 
 @section Scripts{

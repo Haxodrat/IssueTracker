@@ -104,13 +104,18 @@
                     <form method="post">
                         <div class="input-group input-group-sm">
                             <img class="img-fluid img-circle img-sm mr-2" src="/@userManager.GetUserAsync(currentUser).Result.ProfilePhoto" alt="Alt Text">
-                            <input type="text" name="Comment" class="form-control" placeholder="Press enter to post comment">
+                            <input type="text" name="Comment" class="form-control" placeholder="Press enter to post comment" required maxlength="100">
                             <span class="input-group-append">
                                 <button type="submit" class="btn btn-success btn-flat">Send!</button>
                             </span>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="row">
+                <form method="post" action="@Url.Action("DeleteTicket", "Home", new { Id = Model.Id })">
+                    <input type="submit" value="Delete Ticket" class="btn btn-danger ml-2">
+                </form>
             </div>
         </div>
 

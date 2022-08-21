@@ -17,24 +17,25 @@ namespace IssueTracker.Models
 
         [Required]
         [Display(Name = "Name")]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Display(Name = "Description")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [Required]
         [Display(Name = "Status")]
-        public string? Status { get; set; }
+        public string Status { get; set; }
 
         [Required]
         [Display(Name = "Client Company")]
-        public string? ClientCompany { get; set; }
+        public string ClientCompany { get; set; }
 
         [Required]
         [Display(Name = "Project Leader")]
-        public string? ProjectLeader { get; set; }
+        public string ProjectLeader { get; set; }
 
+        [Display(Name = "Contributors")]
         public virtual ICollection<ApplicationUser> Users { get; set; }
 
         public virtual ICollection<TicketModel> Tickets { get; set; }

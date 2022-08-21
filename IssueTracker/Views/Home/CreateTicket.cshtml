@@ -22,13 +22,14 @@
                 </div>
                 <div class="card-body">
                     <form method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
                             <label for="inputName">Ticket Title:</label>
-                            <input name="Title" type="text" id="inputName" class="form-control">
+                            <input name="Title" type="text" id="inputName" class="form-control" required minlength="5">
                         </div>
                         <div class="form-group">
                             <label for="inputName">Project Name:</label>
-                            <select name="ProjectId" id="inputName" class="form-control custom-select">
+                            <select name="ProjectId" id="inputName" class="form-control custom-select" required>
                                 <option selected disabled>Select a Project</option>
                                 @foreach (ProjectModel project in db.Projects.Where(p => p.Users.Contains(UserManager.GetUserAsync(_context.HttpContext.User).Result)))
                                 {
@@ -38,11 +39,11 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Ticket Description:</label>
-                            <textarea name="Description" id="inputDescription" class="form-control" rows="3"></textarea>
+                            <textarea name="Description" id="inputDescription" class="form-control" rows="3" required minlength="5" maxlength="100"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="inputPriority">Ticket Priority:</label>
-                            <select name="Priority" id="inputPriority" class="form-control custom-select">
+                            <select name="Priority" id="inputPriority" class="form-control custom-select" required>
                                 <option selected disabled>Select a Priority</option>
                                 <option value="None">None</option>
                                 <option value="Low">Low</option>
@@ -53,7 +54,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputStatus">Ticket Status:</label>
-                            <select name="Status" id="inputStatus" class="form-control custom-select">
+                            <select name="Status" id="inputStatus" class="form-control custom-select" required>
                                 <option selected disabled>Select a Status</option>
                                 <option value="None">None</option>
                                 <option value="Open">Open</option>
@@ -64,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputType">Ticket Type:</label>
-                            <select name="Type" id="inputType" class="form-control custom-select">
+                            <select name="Type" id="inputType" class="form-control custom-select" required>
                                 <option selected disabled>Select a Type</option>
                                 <option value="Bugs/Errors">Bugs/Errors</option>
                                 <option value="Feature Requests">Feature Requests</option>
@@ -74,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label>Assigned Developer:</label>
-                            <select name="Developer" id="inputDeveloper" class="form-control custom-select">
+                            <select name="Developer" id="inputDeveloper" class="form-control custom-select" required>
                                 <option selected disabled>Select a Developer</option>
                                 @foreach (ApplicationUser user in UserManager.Users)
                                 {
@@ -84,8 +85,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a asp-controller="Home" asp-action="CreateTicket" class="btn btn-secondary">Cancel</a>
-                                <input type="submit" value="Create New Ticket" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success" data-backdrop="static" data-keyboard="false">
+                                <a asp-controller="Home" asp-action="Tickets" class="btn btn-secondary">Cancel</a>
+                                <input type="submit" value="Create New Ticket" class="btn btn-success float-right">
                             </div>
                         </div>
                     </form>
@@ -97,24 +98,6 @@
     </div>
 </section>
 <!-- /.content -->
-<div class="modal fade" id="modal-success">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-success">
-            <div class="modal-header">
-                <h4 class="modal-title">Success!</h4>
-            </div>
-            <div class="modal-body">
-                <p>Your ticket has been created.</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <a type="button" asp-controller="Home" asp-action="Index" class="btn btn-outline-light">Back to Dashboard</a>
-                <a type="button" asp-controller="Home" asp-action="Tickets" class="btn btn-outline-light">Your Tickets</a>
-            </div>
-        </div>
-
-    </div>
-
-</div>
 <!-- /.content-wrapper -->
 
 @section Scripts{
