@@ -5,7 +5,8 @@
 - The dashboard page displays data regarding these tickets, projects, and roles through incorporating information from the SQLite database.
 - The website offers different status to users like Admins or developers to be able to manage roles and projects in different degrees.
 - The backend is implemented by C# with access to the frontend stack of HMTL/CSS.
-- The Tech Stack:
+
+## The Tech Stack:
     - Languages:
         - C#
         - HTML/CSS
