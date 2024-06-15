@@ -7,15 +7,15 @@
 - The backend is implemented by C# with access to the frontend stack of HMTL/CSS.
 
 ## The Tech Stack:
-    - Languages:
-        - C#
-        - HTML/CSS
-        - SQL
-    - Frameworks/Technologies/Etc:
+
+### Languages:
+<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/csharp/csharp.png" height="75">  <img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/html/html.png" height="75">  <img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/css/css.png" height="75">
+### Frameworks/Technologies/Etc:
         - ASP.NET Core
         - SQLite Server
         - Bootstrap 5
         - Identity
         - SendGrid
-- Thank you!
+
+# Thank you!
 
