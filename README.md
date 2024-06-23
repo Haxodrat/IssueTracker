@@ -21,11 +21,11 @@
     <tr>
         <td>Frameworks</td>
         <td>
-              <img src="https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white"/>
-              <img src="https://img.shields.io/badge/SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white"/>
-              <img src="https://img.shields.io/badge/Bootstrap-07405E?style=flat-square&logo=bootstrap&logoColor=white"/>
-        - Identity
-        - SendGrid
+            <img src="https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white"/>
+            <img src="https://img.shields.io/badge/SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Bootstrap-07405E?style=flat-square&logo=bootstrap&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Identity-07405E?style=flat-square&logo=identity&logoColor=white"/>
+            <img src="https://img.shields.io/badge/SendGrid-07405E?style=flat-square&logo=sendgrid&logoColor=white"/>
         </td>
     </tr>
 </table>
