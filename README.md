@@ -25,7 +25,7 @@
             <img src="https://img.shields.io/badge/SQLite-A74304?style=flat-square&logo=sqlite&logoColor=white"/>
             <img src="https://img.shields.io/badge/Bootstrap-B32403?style=flat-square&logo=bootstrap&logoColor=white"/>
             <img src="https://img.shields.io/badge/Identity-EEE302?style=flat-square&logo=identity&logoColor=white"/>
-            <img src="https://img.shields.io/badge/SendGrid Blue-900031?style=flat-square&logo=sendgrid&logoColor=white"/>
+            <img src="https://img.shields.io/badge/SendGrid Blue-blue?style=flat-square&logo=sendgrid&logoColor=white"/>
         </td>
     </tr>
 </table>
