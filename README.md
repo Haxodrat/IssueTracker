@@ -16,12 +16,14 @@
       <img src="https://img.shields.io/badge/CSS3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white"/>
     </td>
 
-### Frameworks/Technologies/Etc:
+<td>Frameworks</td>
+    <td>
       <img src="https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white"/>
       <img src="https://img.shields.io/badge/SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white"/>
       <img src="https://img.shields.io/badge/Bootstrap-07405E?style=flat-square&logo=bootstrap&logoColor=white"/>
         - Identity
         - SendGrid
+    </td>
 
 # Thank you!
 
