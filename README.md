@@ -1,5 +1,6 @@
 # IssueTracker
 
+## Description
 - This website is an IssueTracker application in ASP.NET that tracks issues in projects as tickets, allowing users to customize tickets, projects, comments, roles, and profiles. 
 - The login page uses SendGrid authentication with a SQLite server storing their name, email address, and contact details in a users-relational table.
 - The dashboard page displays data regarding these tickets, projects, and roles through incorporating information from the SQLite database.
