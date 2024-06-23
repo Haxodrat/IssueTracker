@@ -9,14 +9,17 @@
 
 ## The Tech Stack:
 
-### Languages:
-<img src="https://img.shields.io/badge/C#-5C2D91?style=flat-square&logo=c#&logoColor=gray"/>  
-<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/html/html.png"/>  
-<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/css/css.png"/>
+<td>Programming Languages</td>
+    <td>
+      <img src="https://img.shields.io/badge/C%23-239120?style=flat-square&logo=c-sharp&logoColor=white"/>
+      <img src="https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white"/>
+      <img src="https://img.shields.io/badge/CSS3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white"/>
+    </td>
+
 ### Frameworks/Technologies/Etc:
       <img src="https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white"/>
-        - SQLite Server
-        - Bootstrap 5
+      <img src="https://img.shields.io/badge/SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Bootstrap-07405E?style=flat-square&logo=bootstrap&logoColor=white"/>
         - Identity
         - SendGrid
 
