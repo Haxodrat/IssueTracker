@@ -10,9 +10,11 @@
 ## The Tech Stack:
 
 ### Languages:
-<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/csharp/csharp.png" height="75">  <img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/html/html.png" height="75">  <img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/css/css.png" height="75">
+<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/csharp/csharp.png" height="75">  
+<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/html/html.png" height="75">  
+<img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/css/css.png" height="75">
 ### Frameworks/Technologies/Etc:
-        - ASP.NET Core
+      <img src="https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white"/>
         - SQLite Server
         - Bootstrap 5
         - Identity
